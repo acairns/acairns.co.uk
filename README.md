@@ -1,15 +1,11 @@
-# Blog
+# acairns.co.uk
 
-Makes use of Jekyll to be used on GitHub Pages.
-
-Get started by booting up Docker:
-```
-$ docker-compose up
+To do dev stuff:
+```shell
+npm run dev
 ```
 
-Note: this is the entrypoint of the container and will automatically run:
+To create a static export:
+```shell
+npm run export
 ```
-$ jekyll serve --watch
-```
-
-The site is a github site - just push up the changes
