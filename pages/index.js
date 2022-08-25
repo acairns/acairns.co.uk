@@ -5,8 +5,8 @@ import Header from "../components/header";
 export default function Home() {
     return <>
         <Head>
-          <title>Andrew Cairns</title>
-          <link rel="icon" href="/favicon.png" />
+            <title>Andrew Cairns</title>
+            <link rel="icon" href="/favicon.png" />
         </Head>
 
         <div className='flex flex-col'>
@@ -25,16 +25,14 @@ export default function Home() {
                             I'm building a platform to help {' '}
                             <a href="https://trypatchwork.com" target="_blank" className="text-indigo-500">third sector organisations with storytelling</a>.
                             I'm also a Lead Back-End Engineer at {' '}
-                            <a href="https://transfergo.com" target="_blank" className="text-indigo-500">TransferGo</a>{' '}
-                            and have also committed to writing more as a way to{' '}
-                            <Link href="/writing/learning-in-public" className="text-indigo-500"><a>learn in public</a></Link>.
+                            <a href="https://transfergo.com" target="_blank" className="text-indigo-500">TransferGo</a>{' '}.
                         </p>
                         <p>
                             <a href="https://twitter.com/andrewcairns?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-show-count="false" data-size="large">
-                              Follow @andrewcairns
+                                Follow @andrewcairns
                             </a>
                         </p>
-                  </div>
+                    </div>
                 </div>
             </div>
         </div>
