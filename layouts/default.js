@@ -8,7 +8,9 @@ export default function Default({ title, children }) {
                 <h2 className="text-6xl text-gray-700 font-bold">
                     {title}
                 </h2>
-                {children}
+                <div className='prose prose-2xl mt-8'>
+                    {children}
+                </div>
             </div>
         </div>
     </div>;
