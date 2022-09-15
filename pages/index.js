@@ -17,7 +17,7 @@ export default function Home() {
                 My name is Andrew Cairns and I'm a Software Engineer living in Scotland. I've been building software
                 since Turbo Pascal on Amstrad. That's an old programming language no one writes anymore for an old computer no one uses anymore.
             </p>
-            <p className='prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded'>
+            <p className='prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md'>
                 I'm a Lead Back-End Engineer at {' '}
                 <a href="https://transfergo.com" target="_blank" className="bg-yellow-300 -rotate-1">TransferGo</a>.
                 When I'm not working, you'll find me kayaking, coaching youth football or building {' '}
