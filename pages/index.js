@@ -20,7 +20,7 @@ export default function Home() {
             <p className='prose-a:no-underline hover:prose-a:underline'>
                 I'm a Lead Back-End Engineer at {' '}
                 <a href="https://transfergo.com" target="_blank" className="p-1 rounded bg-yellow-300">TransferGo</a>.
-                When I'm not working, you'll find me kayak camping, coaching youth football or building {' '}
+                When I'm not working, you'll find me kayaking, coaching youth football or building {' '}
                 <a href="https://trypatchwork.com" target="_blank" className="p-1 rounded bg-indigo-600 text-white">Patchwork</a> {' '}
                 to help third-sector organisations with storytelling.
             </p>
