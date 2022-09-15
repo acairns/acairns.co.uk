@@ -12,7 +12,7 @@ export default function Home() {
         <Default title='Howdy!'>
             <div className="prose prose-2xl mt-8">
                 <p>
-                    <span className='w-44 h-64 rounded-xl bg-cover bg-center m-3 mr-4 ml-0 float-left' style={{
+                    <span className='w-44 h-64 rounded-xl bg-cover bg-center m-3 mr-8 ml-0 float-left' style={{
                         backgroundImage: `url(${profilePic.src})`,
                     }} />
                     My name is Andrew Cairns and I'm a Software Engineer living in Scotland. I've been building software
