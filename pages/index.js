@@ -11,7 +11,7 @@ export default function Home() {
 
         <Default title='Howdy!'>
             <p>
-                <span className='w-44 h-64 rounded-xl bg-cover bg-center m-3 mr-8 ml-0 float-left' style={{
+                <span className='w-44 h-64 rounded-xl bg-cover bg-center m-3 mr-8 -ml-2 float-left -rotate-2' style={{
                     backgroundImage: `url(${profilePic.src})`,
                 }} />
                 My name is Andrew Cairns and I'm a Software Engineer living in Scotland. I've been building software
