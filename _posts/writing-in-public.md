@@ -1,12 +1,12 @@
 ---
 title: 'Writing in Public'
-metaTitle: 'Next.js page options and how they work'
-metaDesc: 'How to use pages in Next.js exploring the options'
+metaTitle: 'Writing in Public'
+metaDesc: 'Some words on why I have decided to write more in public'
 socialImage: images/22-09-2021.jpg
-date: '2021-09-22'
-draft: false
+date: '2022-09-16'
+draft: true
 tags:
-  - nextjs
+  - learning
 ---
 
 I wanted to explain why I've decided to share what I'm learning.
