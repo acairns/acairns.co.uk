@@ -3,11 +3,12 @@ title: 'Writing in Public'
 metaTitle: 'Writing in Public'
 metaDesc: 'Some words on why I have decided to write more in public'
 socialImage: images/22-09-2021.jpg
-date: '2022-09-16'
+date: '2022-02-16'
 draft: true
 tags:
   - learning
 ---
+
 
 I wanted to explain why I've decided to share what I'm learning.
 
