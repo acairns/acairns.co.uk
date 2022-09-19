@@ -19,6 +19,7 @@ import { listPosts, readPost } from '@/utils/posts';
 // import 'highlight.js/styles/lioshi.css';
 // import 'highlight.js/styles/monokai-sublime.css';
 import 'highlight.js/styles/nord.css'; // ++
+import Author from 'components/author';
 // import 'highlight.js/styles/panda-syntax-dark.css';
 // import 'highlight.js/styles/shades-of-purple.css';
 // import 'highlight.js/styles/tokyo-night-dark.css';
@@ -48,6 +49,9 @@ export default function Post({ content, ...frontmatter }) {
         <Default title={frontmatter.title}>
             <div dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Default>
+        <div className='flex items-center justify-center mb-12'>
+            <Author />
+        </div>
     </>;
 };
 

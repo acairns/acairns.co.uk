@@ -1,8 +1,10 @@
 import Author from 'components/author';
 import Head from 'next/head'
 import Default from 'layouts/default';
+import { listPosts } from 'utils/posts';
+import Link from 'next/link';
 
-export default function Home() {
+export default function Home({ latestPosts }) {
     return <>
         <Head>
             <title>Andrew Cairns</title>
@@ -25,8 +27,30 @@ export default function Home() {
                 to help third-sector organisations with storytelling.
             </p>
             <p>
-                I'm also trying to write more about software.
+                I'm also trying to write more about software development:
             </p>
+
+            <div className="hidden">
+                <h2>Latest Articles</h2>
+                {
+                    latestPosts.map(
+                        (post, index) => <Link key={index} href={`/posts/${post.slug}`}>
+                            <a>
+                                {post.title}
+                            </a>
+                        </Link>
+                    )
+                }
+            </div>
+
         </Default>
     </>;
+}
+
+export async function getStaticProps() {
+    return {
+        props: {
+            latestPosts: listPosts().slice(0, 3)
+        }
+    };
 }

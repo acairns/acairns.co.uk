@@ -9,21 +9,15 @@ export default function Author() {
         <div className='w-48 h-64 bg-cover bg-center' style={{
             backgroundImage: `url(${profilePic.src})`,
         }} />
-        <div className="flex items-center justify-center space-x-3 -mt-1 bg-gray-700 p-3 text-white shadow-inner">
+        <div className="flex items-center justify-center space-x-4 -mt-1 bg-gray-700 p-3 text-white border-t border-gray-800">
             <Link href="https://twitter.com/andrewcairns">
-                <a>
-                    <Twitter className='w-5 h-5 fill-white' />
-                </a>
+                <a><Twitter className='w-5 h-5 fill-white' /></a>
             </Link>
             <Link href="https://github.com/andrewcairns">
-                <a>
-                    <GitHub className='w-5 h-5 fill-white' />
-                </a>
+                <a><GitHub className='w-5 h-5 fill-white' /></a>
             </Link>
             <Link href="https://www.linkedin.com/in/andrewcairns/">
-                <a>
-                    <LinkedIn className='w-5 h-5 fill-white' />
-                </a>
+                <a><LinkedIn className='w-5 h-5 fill-white -mt-1' /></a>
             </Link>
         </div>
     </div>;
