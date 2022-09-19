@@ -6,15 +6,13 @@ date: '2022-09-17'
 ---
 
 
-An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) recently re-sparked a discussion between a few members of my team. And, for good measure, Kai Sassnowski ([@warsh33p](https://twitter.com/warsh33p)) then kicked-off Laracon Online 2022 with a talk on Value Objects.
+An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) sparked discussion within my team regarding the differences between a Value Object and a DTO. For good measure, Kai Sassnowski ([@warsh33p](https://twitter.com/warsh33p)) then kicked-off Laracon Online 2022 with a talk on Value Objects.
 
-Can we recognise objects as being a DTO or a Value Object?
+Is it possible to recognise an object as a Value Object or DTO?
 
-Let's find out!
+Let's see:
 
-Is the following object a DTO or a Value Object?
-
-```
+```php
 final class Money {
     public function __construct(
 		    public readonly int $amount,
@@ -31,22 +29,28 @@ Hmm - it's hard to tell, right? But, why is that?
 
 The purpose of a DTO is nicely described within the name - an object designed to transfer data from one place to another.
 
-If this is true, we could gain clues about this object being a DTO or a Value Object from its usage. If data is being transferred - perhaps we have a DTO?
+PoEAA describes a DTO as:
+> An object that carries data between processes in order to reduce the number of method calls.
+
+![PoEAA](/posts/IMG_3982.jpeg)
+
+This sounds like we should gain clues about this object being a DTO or a Value Object based on its usage. If data is being transferred - perhaps we have a DTO?
+
+But, before we venture outside of the class, are there any ways to tell from the class itself?
 
 
 ### Commands
 
-A Command, named imperatively, describes the action the system needs to take. For example `SendMoney`. Commands are often used as a way for the outside to provide an instruction to your application.
+A Command is named imperatively to describe an action within the system. For example `TransferMoney`. Commands are often used as a way for something outside a system to provide an instruction to your application.
 
-For example:
-```
-$command = new SendMoney(10, 'GBP');
+```php
+$command = new TransferMoney(10, 'GBP');
 $commandBus->handle($command);
 ```
 
-In this example, is `SendMoney` a DTO? Yes!
+Is `TransferMoney` a DTO? Yes!
 
-The object encapsulates all the required data in order to perform a behaviour. It is then sent across a boundary and into your application. The data is is transferred within an object.
+We can tell from the name of the class. When the object is transported, it'll encapsulate all the data required to perform the behaviour.
 
 Noice - as Kai would say!
 
@@ -57,7 +61,7 @@ What about an event?
 
 These objects are named in the past-tense and describe an immutable fact which has happened within a system:
 
-```
+```php
 $event = new MoneyWasSent(10, 'GBP');
 $outbox->record($event);
 ```
@@ -74,7 +78,7 @@ Does this help us decide if `Money` is a DTO?
 
 This was our original example:
 
-```
+```php
 final class Money {
     public function __construct(
 		    public readonly int $amount,
@@ -84,9 +88,9 @@ final class Money {
 }
 ```
 
-We've determined that `SendMoney` and `MoneyWasSent` are DTOs. Naming helps reveal the objects intent to transfer data. But `Money` doesn't look to be a Command nor an Event. It's neither named imperatively to describe an action, or in the past-tense to represent a change.
+We've determined that `TransferMoney` and `MoneyWasSent` are DTOs. Naming helps reveal the objects intent to transfer data. But `Money` doesn't look to be a Command nor an Event. It's neither named imperatively to describe an action, or in the past-tense to represent a change.
 
-Naming can help reveal intent. However, in the case of `Money`, there are no clues as to the object's intended use. We do not have enough information to determine if it's a DTO or a Value Object.
+Naming can help reveal intent. However, in the case of `Money`, there are no clues as to the object's intended use. We do not have enough information to determine this object is a DTO.
 
 
 ## Value Objects
@@ -96,7 +100,7 @@ The purpose of a Value Object is to represent a value important to the business.
 ### Business Constraints
 
 Imagine we have a business rule requiring `Amount` to be a positive value. We could enforce this constraint within the constructor of the Value Object:
-```
+```php
 final class Amount {
     public function __construct(
 		    public readonly int $amount
@@ -110,7 +114,7 @@ final class Amount {
 
 Now, when we try to `new Amount(-1)`, we will see the error:
 
-```
+```php
 PHP Fatal error:  Uncaught InvalidArgumentException
 ```
 
@@ -121,9 +125,9 @@ In this example, it's impossible for `Amount` to be created in an invalid state.
 
 Another design requirement for Value Objects is immutability.
 
-When we design a class to be immutable, internal state does not change. Instead, when this is required, we return a new instance of the object:
+When we design a class to be immutable, internal state does not change. Instead, when a new value is computed, a new object will be created and returned:
 
-```
+```php
 final class Amount {
     public function __construct(
 		    public readonly int $amount
@@ -144,7 +148,7 @@ $two = $amount->double(); // 2
 ### Is Money a Value Object?
 
 Let us once again take a look at our `Money` object to see if we can determine if it's a Value Object:
-```
+```php
 final class Money {
     public function __construct(
 		    public readonly int $amount,
@@ -155,29 +159,39 @@ final class Money {
 ```
 
 
-The constructor of this object takes in an `int` and a `string`. Can we consider these strict enough to protect business rules? As we've seen above, an `int` could be `-1`, `0` or `10`. Strings could also be blank with `''` and, in this context, would be invalid if it didn't match a currency code. It depends on your business, but I'm going to say _no_.
+The constructor of this object takes in an `int` and a `string`. Can we consider this typing enough to protect business rules?
+
+As we discussed before, an `int` could be `-1`, `0` or `10`. Strings could also be blank with `''` and, by the looks of this context, would be invalid if it didn't match a currency code. It depends on your business, but I'm going to say _no_.
 
 Is `Money` immutable? Yes - perhaps this is our first clue this could be a Value Object! We can see both `$amount` and `$currency` are _readonly_ without any public methods which could mutate their state.
 
-Does this mean we have a Value Object? Unfortunately, I don't think so. Immutability, as much as it is a key principle when designing Value Objects, is far from unique. It's entirely possible to design a `DTO` to be immutable - for example, we could have a `SendMoneyRequest` which, once it hits our system from the outside, we do not want to change.
+Does this mean we have a Value Object? Unfortunately, I don't think so. Immutability, as much as it is a key principle when designing Value Objects, it is not unique to them. It's entirely possible to design a `DTO` to be immutable - for example, we could have a `TransferMoneyRequest` which, once it hits our system from the outside, we do not want it's values to change.
 
 
 ## Intent
 
-We don't know enough about `Money` to determine what it is used for. If trying to identify if an object is a Value Object or a DTO, we need to understand the role it plays within our system.
+So far we've only looked inside (the limited) class definition to try to determine if `Money` is a DTO or a Value Object. We have struggled because DTOs and Value Objects can sometimes look very similar. We simply don't know enough about `Money` to determine what it is.
 
-For Value Objects, they are intended to measure, quantify or describe something important within our domain. For DTOs, they are intended to transfer data from one place to another.
-
-How can we add intent to the `Money` object to help our fellow engineers?
+How could we have revealed intent within the `Money` object to help our fellow engineers?
 
 - Naming\
-Perhaps the most useful tool at our disposal, as engineers, is how we name things. In order to create an example which could be a Value Object or a DTO, the name of class was intentionally vague. When we're naming our classes we should take the opportunity to reveal the intent, if we can.
+Perhaps the most useful tool we have as engineers is how we name things. When thinking about an example I could use for this article which could be a Value Object or a DTO - I ensured name of class was intentionally vague. When we're naming our classes we should take the opportunity to reveal intent, if we can.
 
 - Namespace\
-I intentionally did not include a namespace as it makes it much simpler to determine if an object is a DTO or a Value Object. For example, you'll more likely find Value Objects within a _Domain_ layer. You'll also more likely find Commands within an _Application_ layer.
+I intentionally did not include a namespace as it makes it much simpler to determine if an object is a DTO or a Value Object. For example, you'll more likely find Value Objects within a _Domain_ layer. You'll also more likely find Commands within an _Application_ layer. Where your object is placed within your system helps reveal intent.
 
 
-## Gun to the head...
+
+The difference between them is how they are used on the outside. Their reason for existing. Their intent.
+
+Value Objects measure, quantify or describe something important within our domain. DTOs transfer data from one place to another.
+
+
+
+
+
+
+## Opinion
 
 Many times articles have no choice than to explain tradeoffs and end articles with _"it depends"_. After all, there are no one-size-fits-all solutions. However, I thought I'd stick my neck out and share my opinion and why I reach that conclusion.
 
@@ -205,8 +219,11 @@ A DTO is a message which contains values.
 
 - [Is it a DTO or a Value Object?](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) Matthias Noback
 - [@warsh33p](https://twitter.com/warsh33p) Kai Sassnowski
+- [LocalDTO](https://martinfowler.com/bliki/LocalDTO.html) Martin Fowler
 
 
-@@@TODO
+@@@TODO@@@
 
 "Other types of stuff" could be - messages.
+
+DTOs don't contain an business logic
