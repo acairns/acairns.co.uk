@@ -7,6 +7,10 @@ export function listPosts() {
 
     const tempPosts = files.map((filename) => {
 
+        if (filename.startsWith('!')) {
+            return null;
+        }
+
         const slug = filename.replace('.md', '');
 
         const markdownWithMeta = fs.readFileSync(
@@ -15,10 +19,6 @@ export function listPosts() {
         );
 
         const { data: frontmatter } = matter(markdownWithMeta);
-
-        if (frontmatter.draft !== false) {
-            return null;
-        }
 
         return {
             slug,
@@ -47,5 +47,5 @@ export function readPost(slug) {
 }
 
 export function sortByDate(a, b) {
-    return new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+    return new Date(b.date) - new Date(a.date)
 }

@@ -5,8 +5,9 @@ title: 'Value Object or DTO?'
 date: '2022-09-17'
 ---
 
+An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) sparked discussion within my team regarding the differences between Value Objects and DTOs. For good measure, [Kai Sassnowski](https://twitter.com/warsh33p) then kicked-off Laracon Online 2022 with a talk on Value Objects.
 
-An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) sparked discussion within my team regarding the differences between a Value Object and a DTO. For good measure, Kai Sassnowski ([@warsh33p](https://twitter.com/warsh33p)) then kicked-off Laracon Online 2022 with a talk on Value Objects.
+Before I could write up my thinking on his first article, Matthias published a related follow-up regarding [DateTimeImmutable being a primitive type](https://matthiasnoback.nl/2022/09/can-we-consider-datetimeimmutable-a-primitive-type/). Moments later [Andreas Möller](https://twitter.com/localheinz) posted about [his thinking regarding DateTimeImmutable](https://localheinz.com/blog/2022/09/20/enhancing-types/).
 
 Is it possible to recognise an object as a Value Object or DTO?
 
@@ -15,8 +16,8 @@ Let's see:
 ```php
 final class Money {
     public function __construct(
-		    public readonly int $amount,
-		    public readonly string $currency,
+            public readonly int $amount,
+            public readonly string $currency,
     ) {
     }
 }

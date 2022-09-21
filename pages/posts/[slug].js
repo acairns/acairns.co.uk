@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import md from 'markdown-it';
 import Default from '@/layouts/default';
-import hljs from 'highlight.js';
+import Author from 'components/author';
 import { listPosts, readPost } from '@/utils/posts';
+import hljs from 'highlight.js';
 // import 'highlight.js/styles/a11y-dark.css';
 // import 'highlight.js/styles/agate.css';
 // import 'highlight.js/styles/androidstudio.css';
@@ -19,7 +20,6 @@ import { listPosts, readPost } from '@/utils/posts';
 // import 'highlight.js/styles/lioshi.css';
 // import 'highlight.js/styles/monokai-sublime.css';
 import 'highlight.js/styles/nord.css'; // ++
-import Author from 'components/author';
 // import 'highlight.js/styles/panda-syntax-dark.css';
 // import 'highlight.js/styles/shades-of-purple.css';
 // import 'highlight.js/styles/tokyo-night-dark.css';
@@ -44,11 +44,12 @@ export default function Post({ content, ...frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
-            <link rel="icon" href="/favicon.png" />
         </Head>
+
         <Default title={frontmatter.title}>
             <div dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Default>
+
         <div className='flex items-center justify-center mb-12'>
             <Author />
         </div>
