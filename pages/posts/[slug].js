@@ -44,6 +44,9 @@ export default function Post({ content, ...frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
+            <meta key="og:title" property="og:title" content={`${frontmatter.title} - Andrew Cairns`} />
+            <meta key="description" name="description" content={frontmatter.description} />
+            <meta key="og:description" property="og:description" content={frontmatter.description} />
         </Head>
 
         <Default title={frontmatter.title}>
