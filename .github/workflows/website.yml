@@ -22,7 +22,7 @@ jobs:
       - name: Generate Sitemap 📍
         run: |
           node sitemap.js
-          mv sitemap.xml > out/
+          mv sitemap.xml > out/sitemap.xml
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
