@@ -1,5 +1,4 @@
 ---
-draft: false
 slug: 'value-object-or-dto'
 title: 'Value Object or DTO?'
 description: 'Is it possible to recognise an object as a Value Object or DTO?'

@@ -19,6 +19,9 @@ jobs:
       - name: Configure for GitHub Pages ⚙️
         run: touch out/.nojekyll
 
+      - name: Generate Sitemap 📍
+        run: node out/sitemap.js
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
