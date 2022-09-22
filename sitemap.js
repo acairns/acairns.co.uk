@@ -28,5 +28,5 @@ const stream = new SitemapStream({ hostname: 'https://acairns.co.uk/' });
 
 // Return a promise that resolves with your XML string
 return streamToPromise(Readable.from(links).pipe(stream)).then((data) => {
-    fs.writeFileSync('./public/sitemap.xml', data.toString());
+    fs.writeFileSync('sitemap.xml', data.toString());
 });
