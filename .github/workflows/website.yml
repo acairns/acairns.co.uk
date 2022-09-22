@@ -20,7 +20,9 @@ jobs:
         run: touch out/.nojekyll
 
       - name: Generate Sitemap 📍
-        run: node out/sitemap.js
+        run: |
+          node sitemap.js
+          mv sitemap.xml > out/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
