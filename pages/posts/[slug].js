@@ -40,7 +40,7 @@ const markdownOptions = {
     }
 };
 
-export default function Post({ content, ...frontmatter }) {
+export default function Post({ content, mtime, ...frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
@@ -50,7 +50,7 @@ export default function Post({ content, ...frontmatter }) {
         </Head>
 
         <Default title={frontmatter.title}>
-            <div dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
+            <article dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Default>
 
         <div className='flex items-center justify-center mb-12'>

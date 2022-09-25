@@ -24,9 +24,17 @@ export default function Home({ latestPosts }) {
                 <a href="https://trypatchwork.com" target="_blank" className="bg-indigo-600 text-white rotate-2">Patchwork</a> {' '}
                 to help third-sector organisations with storytelling.
             </p>
-            <p>
-                I'm also trying to write more about software development:
-            </p>
+
+            <h2>Latest Articles</h2>
+            {
+                latestPosts.map(
+                    (post, index) => <p key={index}>
+                        <Link href={`/posts/${post.slug}`}>
+                            <a>{post.title}</a>
+                        </Link>
+                    </p>
+                )
+            }
 
         </Default>
     </>;

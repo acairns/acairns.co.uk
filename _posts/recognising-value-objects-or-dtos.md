@@ -1,25 +1,23 @@
 ---
-slug: 'value-object-or-dto'
-title: 'Value Object or DTO?'
+slug: 'recognising-value-objects-or-dtos'
+title: 'Recognising Value Objects or DTOs'
 description: 'Is it possible to recognise an object as a Value Object or DTO?'
-date: '2022-09-17'
+date: '2022-09-25'
 ---
 
-An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) sparked discussion within my team regarding the differences between Value Objects and DTOs. For good measure, [Kai Sassnowski](https://twitter.com/warsh33p) then kicked-off Laracon Online 2022 with a talk on Value Objects.
+An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) sparked discussion I was involved in recently regarding the differences between Value Objects and DTOs and if it were possible to recognise them from the class definition. And, if so, what aspects help us identify them the most?
 
-Before I could write up my thinking on his first article, Matthias published a related follow-up regarding [DateTimeImmutable being a primitive type](https://matthiasnoback.nl/2022/09/can-we-consider-datetimeimmutable-a-primitive-type/). Moments later [Andreas Möller](https://twitter.com/localheinz) posted about [his thinking regarding DateTimeImmutable](https://localheinz.com/blog/2022/09/20/enhancing-types/).
-
-Is it possible to recognise an object as a Value Object or DTO?
+Can we identify a Value Object or a DTO from the class definition?
 
 Let's see:
 
 ```php
 final class Money {
-    public function __construct(
-            public readonly int $amount,
-            public readonly string $currency,
-    ) {
-    }
+  public function __construct(
+      public readonly int $amount,
+      public readonly string $currency,
+  ) {
+  }
 }
 ```
 
@@ -31,9 +29,22 @@ Hmm - it's hard to tell, right? But, why is that?
 The purpose of a DTO is nicely described within the name - an object designed to transfer data from one place to another.
 
 PoEAA describes a DTO as:
-> An object that carries data between processes in order to reduce the number of method calls.
 
-![PoEAA](/posts/IMG_3982.jpeg)
+<img src='/posts/IMG_3982.jpeg' alt='PoEAA' class="shadow-md rounded-xl -rotate-2" />
+
+<figure>
+    <blockquote>
+        <p>An object that carries data between processes in order to reduce the number of method calls.</p>
+    </blockquote>
+    <figcaption class='text-right'>
+        <cite>
+            Patterns of Enterprise Application Architecture
+        </cite>
+        - Martin Fowler
+    </figcaption>
+</figure>
+
+
 
 This sounds like we should gain clues about this object being a DTO or a Value Object based on its usage. If data is being transferred - perhaps we have a DTO?
 
@@ -42,7 +53,7 @@ But, before we venture outside of the class, are there any ways to tell from the
 
 ### Commands
 
-A Command is named imperatively to describe an action within the system. For example `TransferMoney`. Commands are often used as a way for something outside a system to provide an instruction to your application.
+One common type of DTO is a Command - an object, named imperatively to describe an action, is used to provided as an instructon to your application. For example `TransferMoney` could provide all the information required to transfer money from one place to another.
 
 ```php
 $command = new TransferMoney(10, 'GBP');
@@ -51,14 +62,12 @@ $commandBus->handle($command);
 
 Is `TransferMoney` a DTO? Yes!
 
-We can tell from the name of the class. When the object is transported, it'll encapsulate all the data required to perform the behaviour.
-
-Noice - as Kai would say!
+We can actually tell this is a Command from the name of the class. Aditionally, we see above the object encapsulates all the data required to perform the behaviour and that it transports the data as it's passed into a `$commandBus`.
 
 
 ### Events
 
-What about an event?
+What about events?
 
 These objects are named in the past-tense and describe an immutable fact which has happened within a system:
 
@@ -69,7 +78,7 @@ $outbox->record($event);
 
 Is the `MoneyWasSent` object a DTO? Yes!
 
-Here we have an object representing a change within our system. It contains data relating to the change and will be published (another way of saying "transferred") to any interested subscribers.
+Here we have an object representing a change within our system. It contains data relating to what changed and will be published (another way of saying "transferred") to any interested subscribers.
 
 We have another DTO!
 
@@ -81,11 +90,11 @@ This was our original example:
 
 ```php
 final class Money {
-    public function __construct(
-		    public readonly int $amount,
-		    public readonly string $currency,
-    ) {
-    }
+  public function __construct(
+      public readonly int $amount,
+      public readonly string $currency,
+  ) {
+  }
 }
 ```
 
@@ -103,13 +112,13 @@ The purpose of a Value Object is to represent a value important to the business.
 Imagine we have a business rule requiring `Amount` to be a positive value. We could enforce this constraint within the constructor of the Value Object:
 ```php
 final class Amount {
-    public function __construct(
-		    public readonly int $amount
-    ) {
-		    if ($amount < 0) {
-				    throw new InvalidArgumentException();
-		    }
-    }
+  public function __construct(
+      public readonly int $amount
+  ) {
+      if ($amount < 0) {
+          throw new InvalidArgumentException();
+      }
+  }
 }
 ```
 
@@ -130,15 +139,15 @@ When we design a class to be immutable, internal state does not change. Instead,
 
 ```php
 final class Amount {
-    public function __construct(
-		    public readonly int $amount
-    ) {
-    }
+  public function __construct(
+      public readonly int $amount
+  ) {
+  }
 
-    public function double(): Amount
-    {
-        return new Amount($this->amount * 2);
-    }
+  public function double(): Amount
+  {
+    return new Amount($this->amount * 2);
+  }
 }
 
 $one = new Amount(1);  // 1
@@ -151,14 +160,13 @@ $two = $amount->double(); // 2
 Let us once again take a look at our `Money` object to see if we can determine if it's a Value Object:
 ```php
 final class Money {
-    public function __construct(
-		    public readonly int $amount,
-		    public readonly string $currency,
-    ) {
-    }
+  public function __construct(
+      public readonly int $amount,
+      public readonly string $currency,
+  ) {
+  }
 }
 ```
-
 
 The constructor of this object takes in an `int` and a `string`. Can we consider this typing enough to protect business rules?
 
@@ -173,7 +181,7 @@ Does this mean we have a Value Object? Unfortunately, I don't think so. Immutabi
 
 So far we've only looked inside (the limited) class definition to try to determine if `Money` is a DTO or a Value Object. We have struggled because DTOs and Value Objects can sometimes look very similar. We simply don't know enough about `Money` to determine what it is.
 
-How could we have revealed intent within the `Money` object to help our fellow engineers?
+How could we reveal intent within the `Money` object to help our fellow engineers?
 
 - Naming\
 Perhaps the most useful tool we have as engineers is how we name things. When thinking about an example I could use for this article which could be a Value Object or a DTO - I ensured name of class was intentionally vague. When we're naming our classes we should take the opportunity to reveal intent, if we can.
@@ -181,26 +189,20 @@ Perhaps the most useful tool we have as engineers is how we name things. When th
 - Namespace\
 I intentionally did not include a namespace as it makes it much simpler to determine if an object is a DTO or a Value Object. For example, you'll more likely find Value Objects within a _Domain_ layer. You'll also more likely find Commands within an _Application_ layer. Where your object is placed within your system helps reveal intent.
 
+It's important to remember, we reach for Value Objects or DTOs for different reasons. Value Objects measure, quantify or describe something important within our domain. DTOs transfer data from one place to another - they don't contain business logic
 
-
-The difference between them is how they are used on the outside. Their reason for existing. Their intent.
-
-Value Objects measure, quantify or describe something important within our domain. DTOs transfer data from one place to another.
-
-
-
-
+If you are having trouble identifying if a class is a DTO or a Value Object, be sure to check how they are used on the outside - not just their definition. Their reason for existing. Their intent.
 
 
 ## Opinion
 
-Many times articles have no choice than to explain tradeoffs and end articles with _"it depends"_. After all, there are no one-size-fits-all solutions. However, I thought I'd stick my neck out and share my opinion and why I reach that conclusion.
+Many times articles have no choice than to explain tradeoffs and end articles with _"it depends"_. After all, there are no one-size-fits-all solution when it comes to building software. However, I thought I'd stick my neck out and share my opinion and why I reach that conclusion.
 
-In my opinion, `Money` is a Value Object.
+In my opinion, `Money` is a Value Object. Not a good one, though.
 
-The object looks to be a concept without a domain which wouldn't make sense without a piece of information. In order to represent money, we need 2 pieces of information: the amount and a currency.
+In terms of the naming, it looks to be more a _thing_ than a message. The object looks to be a concept within a domain which needs 2 pieces of information in order to make sense. In order to represent money, we need an amount and a currency.
 
-If anything, I'd expect a DTO to compose itself with values such as `Money` instead of 
+To me, it looks to be a Value Object - but I wouldn't bet any `Money` on it... 🥁
 
 
 ## Conclusion
@@ -210,21 +212,3 @@ It can be difficult at times to identify the intent of an object. DTOs and Value
 DTOs can sometimes have natural linguistic characteristics which can help reveal intent through a naming convention - particularly for Commands (imperatively named) and Events (past-tense).
 
 Value Objects describe something important within a domain. They represent a value, enforce domain constraints and are often found within a Domain layer.
-
-What I've come to understand causes confusion is that, when data is transferred from one system to another - the data is often a collection of values. If you want to transfer a `User` from one system to another, it can be difficult to determine if this is a DTO or if this is a Value Object.
-
-A DTO is a message which contains values.
-
-
-## References
-
-- [Is it a DTO or a Value Object?](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) Matthias Noback
-- [@warsh33p](https://twitter.com/warsh33p) Kai Sassnowski
-- [LocalDTO](https://martinfowler.com/bliki/LocalDTO.html) Martin Fowler
-
-
-@@@TODO@@@
-
-"Other types of stuff" could be - messages.
-
-DTOs don't contain an business logic

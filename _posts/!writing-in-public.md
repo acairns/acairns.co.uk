@@ -4,6 +4,7 @@ metaTitle: 'Writing in Public'
 metaDesc: 'Some words on why I have decided to write more in public'
 socialImage: images/22-09-2021.jpg
 date: '2022-02-16'
+draft: true
 tags:
   - learning
 ---
