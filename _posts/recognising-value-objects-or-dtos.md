@@ -48,7 +48,7 @@ PoEAA describes a DTO as:
 
 This sounds like we should gain clues about this object being a DTO or a Value Object based on its usage. If data is being transferred - perhaps we have a DTO?
 
-But, before we venture outside of the class, are there any ways to tell from the class itself?
+But, before we venture outside the class, are there any ways to tell from the class itself?
 
 
 ### Commands
@@ -62,7 +62,7 @@ $commandBus->handle($command);
 
 Is `TransferMoney` a DTO? Yes!
 
-We can actually tell this is a Command from the name of the class. Aditionally, we see above the object encapsulates all the data required to perform the behaviour and that it transports the data as it's passed into a `$commandBus`.
+We can actually tell this is a Command from the name of the class. Additionally, we see above the object encapsulates all the data required to perform the behaviour and that it transports the data as it's passed into a `$commandBus`.
 
 
 ### Events
@@ -98,7 +98,7 @@ final class Money {
 }
 ```
 
-We've determined that `TransferMoney` and `MoneyWasSent` are DTOs. Naming helps reveal the objects intent to transfer data. But `Money` doesn't look to be a Command nor an Event. It's neither named imperatively to describe an action, or in the past-tense to represent a change.
+We've determined that `TransferMoney` and `MoneyWasSent` are DTOs. Naming helps reveal the object's intent to transfer data. But `Money` doesn't look to be a Command nor an Event. It's neither named imperatively to describe an action, or in the past-tense to represent a change.
 
 Naming can help reveal intent. However, in the case of `Money`, there are no clues as to the object's intended use. We do not have enough information to determine this object is a DTO.
 
@@ -174,7 +174,7 @@ As we discussed before, an `int` could be `-1`, `0` or `10`. Strings could also 
 
 Is `Money` immutable? Yes - perhaps this is our first clue this could be a Value Object! We can see both `$amount` and `$currency` are _readonly_ without any public methods which could mutate their state.
 
-Does this mean we have a Value Object? Unfortunately, I don't think so. Immutability, as much as it is a key principle when designing Value Objects, it is not unique to them. It's entirely possible to design a `DTO` to be immutable - for example, we could have a `TransferMoneyRequest` which, once it hits our system from the outside, we do not want it's values to change.
+Does this mean we have a Value Object? Unfortunately, I don't think so. Immutability, as much as it is a key principle when designing Value Objects, it is not unique to them. It's entirely possible to design a `DTO` to be immutable - for example, we could have a `TransferMoneyRequest` which, once it hits our system from the outside, we do not want its values to change.
 
 
 ## Intent
@@ -184,7 +184,7 @@ So far we've only looked inside (the limited) class definition to try to determi
 How could we reveal intent within the `Money` object to help our fellow engineers?
 
 - Naming\
-Perhaps the most useful tool we have as engineers is how we name things. When thinking about an example I could use for this article which could be a Value Object or a DTO - I ensured name of class was intentionally vague. When we're naming our classes we should take the opportunity to reveal intent, if we can.
+Perhaps the most useful tool we have as engineers is how we name things. When thinking about an example I could use for this article, which could be a Value Object or a DTO - I ensured name of class was intentionally vague. When we're naming our classes we should take the opportunity to reveal intent, if we can.
 
 - Namespace\
 I intentionally did not include a namespace as it makes it much simpler to determine if an object is a DTO or a Value Object. For example, you'll more likely find Value Objects within a _Domain_ layer. You'll also more likely find Commands within an _Application_ layer. Where your object is placed within your system helps reveal intent.
