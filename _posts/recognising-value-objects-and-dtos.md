@@ -1,6 +1,6 @@
 ---
-slug: 'recognising-value-objects-or-dtos'
-title: 'Recognising Value Objects or DTOs'
+slug: 'recognising-value-objects-and-dtos'
+title: 'Recognising Value Objects and DTOs'
 description: 'Is it possible to recognise an object as a Value Object or DTO?'
 date: '2022-09-25'
 ---
