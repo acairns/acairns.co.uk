@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
 
       <meta property="og:image" content="https://acairns.co.uk/andrewcairns_400x400.jpeg" />
       <meta property="og:site_name" content="Andrew Cairns" />
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@andrewcairns" />
       <meta name="twitter:creator" content="@andrewcairns" />
     </Head>
