@@ -53,7 +53,7 @@ export default function Post({ content, mtime, ...frontmatter }) {
 
         <Layout title={frontmatter.title}>
             <small className='text-slate-400'>
-                <time datetime={frontmatter.date}>{frontmatter.date}</time>
+                <time dateTime={frontmatter.date}>{frontmatter.date}</time>
             </small>
             <article dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Layout>
