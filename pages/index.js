@@ -28,11 +28,14 @@ export default function Home({ latestPosts }) {
             <h2>Latest Articles</h2>
             {
                 latestPosts.map(
-                    (post, index) => <p key={index}>
-                        <Link href={`/posts/${post.slug}`}>
-                            <a>{post.title}</a>
-                        </Link>
-                    </p>
+                    (post, index) => <div key={index}>
+                        <p>
+                            <Link href={`/posts/${post.slug}`}>
+                                <a className='block'>{post.title}</a>
+                            </Link>
+                            <small>{post.description}</small>
+                        </p>
+                    </div>
                 )
             }
 

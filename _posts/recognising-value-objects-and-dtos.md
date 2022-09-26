@@ -3,6 +3,10 @@ slug: 'recognising-value-objects-and-dtos'
 title: 'Recognising Value Objects and DTOs'
 description: 'Is it possible to recognise an object as a Value Object or DTO?'
 date: '2022-09-25'
+tags:
+  - dto
+  - vo
+  - ddd
 ---
 
 An interesting [article from Matthias Noback](https://matthiasnoback.nl/2022/09/is-it-a-dto-or-a-value-object/) sparked discussion I was involved in recently regarding the differences between Value Objects and DTOs and if it were possible to recognise them from the class definition. And, if so, what aspects help us identify them the most?
