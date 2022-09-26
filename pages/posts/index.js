@@ -3,7 +3,7 @@ import { listPosts } from '@/utils/posts';
 import Link from 'next/link';
 
 export default function Posts({ posts }) {
-    return <Default>
+    return <Default title='Posts'>
         {
             posts.map((post, index) =>
                 <h2 key={index}>
