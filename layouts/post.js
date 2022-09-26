@@ -1,8 +1,9 @@
 import Footer from "components/footer";
 import Author from 'components/author';
 import Header from "components/header";
+import Badge from "components/badge";
 
-export default function Post({ title, date, children }) {
+export default function Post({ title, date, tags, children }) {
     return <div className='flex flex-col'>
         <Header />
         <div className='mt-8 mb-16 m-auto max-w-full'>
@@ -10,9 +11,19 @@ export default function Post({ title, date, children }) {
                 <h1 className="text-4xl md:text-8xl font-bold">
                     {title}
                 </h1>
+
+                {
+                    tags && <div className='space-x-4 mb-4'>
+                        {
+                            tags.map(tag => <Badge>{tag}</Badge>)
+                        }
+                    </div>
+                }
+
                 <small className='text-slate-400'>
                     <time dateTime={date}>{date}</time>
                 </small>
+
                 <div className='mt-8'>
                     {children}
                 </div>

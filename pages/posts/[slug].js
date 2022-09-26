@@ -42,7 +42,7 @@ const markdownOptions = {
     }
 };
 
-export default function Post({ content, mtime, ...frontmatter }) {
+export default function Post({ content, ...frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
@@ -51,7 +51,7 @@ export default function Post({ content, mtime, ...frontmatter }) {
             <meta key="og:description" property="og:description" content={frontmatter.description} />
         </Head>
 
-        <Layout title={frontmatter.title} date={frontmatter.date}>
+        <Layout title={frontmatter.title} date={frontmatter.date} tags={frontmatter.tags || []}>
             <article dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Layout>
     </>;
