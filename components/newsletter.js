@@ -33,10 +33,10 @@ export default function Newsletter() {
                     </div>
                 </form>
                 <p className="mt-3 text-sm text-gray-300">
-                    Revue cares about the protection of your data.
+                    I care about the protection of your data.
                 </p>
                 <p className="text-sm text-gray-300">
-                    Read their{' '}
+                    Read Revue's {' '}
                     <a target="_blank" href="https://www.getrevue.co/terms" className="font-medium text-white underline">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy" className="font-medium text-white underline">Privacy Policy</a>
                 </p>
             </div>
