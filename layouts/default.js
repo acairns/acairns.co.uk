@@ -1,19 +1,11 @@
 import Header from "components/header";
-import classNames from 'classnames';
 import Footer from "components/footer";
 
-export default function Default({ title, narrow = false, children }) {
-    const mainClasses = classNames(
-        "prose md:prose-2xl prose-headings:text-gray-700 p-10",
-        {
-            "max-w-2xl": narrow
-        }
-    );
-
+export default function Default({ title, children }) {
     return <div className='flex flex-col'>
         <Header />
         <div className='mt-8 mb-16 m-auto max-w-full'>
-            <div className={mainClasses}>
+            <div className="prose md:prose-2xl prose-headings:text-gray-700 p-10 max-w-2xl">
                 <h1 className="text-4xl md:text-8xl font-bold">
                     {title}
                 </h1>

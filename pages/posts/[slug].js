@@ -51,10 +51,7 @@ export default function Post({ content, mtime, ...frontmatter }) {
             <meta key="og:description" property="og:description" content={frontmatter.description} />
         </Head>
 
-        <Layout title={frontmatter.title}>
-            <small className='text-slate-400'>
-                <time dateTime={frontmatter.date}>{frontmatter.date}</time>
-            </small>
+        <Layout title={frontmatter.title} date={frontmatter.date}>
             <article dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Layout>
     </>;
