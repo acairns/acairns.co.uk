@@ -10,6 +10,5 @@ export default function Post(props) {
                 <Author />
             </div>
         </Default>
-        <Footer />
     </>;
 }

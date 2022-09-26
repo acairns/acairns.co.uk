@@ -1,5 +1,6 @@
 import Header from "components/header";
 import classNames from 'classnames';
+import Footer from "components/footer";
 
 export default function Default({ title, narrow = false, children }) {
     const mainClasses = classNames(
@@ -11,7 +12,7 @@ export default function Default({ title, narrow = false, children }) {
 
     return <div className='flex flex-col'>
         <Header />
-        <div className='mt-8 m-auto max-w-full'>
+        <div className='mt-8 mb-16 m-auto max-w-full'>
             <div className={mainClasses}>
                 <h1 className="text-4xl md:text-8xl font-bold">
                     {title}
@@ -21,5 +22,6 @@ export default function Default({ title, narrow = false, children }) {
                 </div>
             </div>
         </div>
+        <Footer />
     </div>;
 }
