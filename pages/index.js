@@ -33,7 +33,7 @@ export default function Home({ latestPosts }) {
                             <Link href={`/posts/${post.slug}`}>
                                 <a className='block'>{post.title}</a>
                             </Link>
-                            <em className='ml-3 text-slate-400'>
+                            <em className='ml-3 text-slate-400 whitespace-nowrap'>
                                 <time className='text-sm' datetime={post.date}>{post.date}</time>
                             </em>
                         </div>
