@@ -2,7 +2,6 @@
 slug: 'intro-to-change-data-capture'
 title: 'Introduction to Change Data Capture'
 date: '2022-09-20'
-draft: true
 ---
 
 Change Data Capture (CDC) is a low-level way of propagating state changes as a series of events.

@@ -2,7 +2,6 @@
 slug: 'accidental-intent-cancelling'
 title: 'Accidental Intent Cancelling'
 date: '2022-09-20'
-draft: true
 ---
 
 When we make an API call to a REST API, we have a set of verbs in order to reveal the intent of the user. We can use `GET` to represent the request for a resource. Other verbs such as `PUT`, `POST` and `PATCH` can also describe mutations for the mutation of a resource.
