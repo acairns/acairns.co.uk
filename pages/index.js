@@ -29,12 +29,17 @@ export default function Home({ latestPosts }) {
             {
                 latestPosts.map(
                     (post, index) => <div key={index}>
-                        <p>
+                        <div className='flex align-text-bottom'>
                             <Link href={`/posts/${post.slug}`}>
                                 <a className='block'>{post.title}</a>
                             </Link>
-                            <small>{post.description}</small>
-                        </p>
+                            <em className='ml-3 text-slate-400'>
+                                <time className='text-sm' datetime={post.date}>{post.date}</time>
+                            </em>
+                        </div>
+                        <small>
+                            {post.description}
+                        </small>
                     </div>
                 )
             }

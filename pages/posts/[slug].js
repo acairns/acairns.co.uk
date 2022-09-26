@@ -50,6 +50,9 @@ export default function Post({ content, mtime, ...frontmatter }) {
         </Head>
 
         <Default title={frontmatter.title}>
+            <small className='text-slate-400'>
+                <time datetime={frontmatter.date}>{frontmatter.date}</time>
+            </small>
             <article dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
         </Default>
 

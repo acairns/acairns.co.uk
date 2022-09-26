@@ -1,7 +1,7 @@
 ---
 slug: 'recognising-value-objects-and-dtos'
 title: 'Recognising Value Objects and DTOs'
-description: 'Is it possible to recognise an object as a Value Object or DTO?'
+description: "Is it possible to recognise a class as a Value Object or DTO?"
 date: '2022-09-25'
 tags:
   - dto
