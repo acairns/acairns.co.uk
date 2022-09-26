@@ -1,9 +1,7 @@
 import Head from 'next/head';
 import md from 'markdown-it';
-import Default from '@/layouts/default';
-import Author from 'components/author';
 import { listPosts, readPost } from '@/utils/posts';
-import hljs from 'highlight.js';
+/**
 // import 'highlight.js/styles/a11y-dark.css';
 // import 'highlight.js/styles/agate.css';
 // import 'highlight.js/styles/androidstudio.css';
@@ -19,12 +17,16 @@ import hljs from 'highlight.js';
 // import 'highlight.js/styles/ir-black.css';
 // import 'highlight.js/styles/lioshi.css';
 // import 'highlight.js/styles/monokai-sublime.css';
-import 'highlight.js/styles/nord.css'; // ++
+// import 'highlight.js/styles/nord.css'; // ++
 // import 'highlight.js/styles/panda-syntax-dark.css';
 // import 'highlight.js/styles/shades-of-purple.css';
 // import 'highlight.js/styles/tokyo-night-dark.css';
 // import 'highlight.js/styles/vs2015.css'; // ++
 // import 'highlight.js/styles/xt256.css';
+*/
+import hljs from 'highlight.js';
+import 'highlight.js/styles/nord.css';
+import { default as Layout } from 'layouts/post';
 
 const markdownOptions = {
     html: true,
@@ -49,16 +51,12 @@ export default function Post({ content, mtime, ...frontmatter }) {
             <meta key="og:description" property="og:description" content={frontmatter.description} />
         </Head>
 
-        <Default title={frontmatter.title}>
+        <Layout title={frontmatter.title}>
             <small className='text-slate-400'>
                 <time datetime={frontmatter.date}>{frontmatter.date}</time>
             </small>
             <article dangerouslySetInnerHTML={{ __html: md(markdownOptions).render(content) }} />
-        </Default>
-
-        <div className='flex items-center justify-center mb-12'>
-            <Author />
-        </div>
+        </Layout>
     </>;
 };
 
