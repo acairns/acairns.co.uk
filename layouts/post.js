@@ -6,7 +6,7 @@ export default function Post({ title, date, children }) {
     return <div className='flex flex-col'>
         <Header />
         <div className='mt-8 mb-16 m-auto max-w-full'>
-            <div className="prose md:prose-2xl prose-headings:text-gray-700 p-10">
+            <div className="prose sm:prose-xl md:prose-2xl prose-headings:text-gray-700 p-10">
                 <h1 className="text-4xl md:text-8xl font-bold">
                     {title}
                 </h1>
