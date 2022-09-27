@@ -27,23 +27,25 @@ export default function Home({ latestPosts }) {
             </p>
 
             <h2>Latest Articles</h2>
-            {
-                latestPosts.map(
-                    (post, index) => <div key={index}>
-                        <div className='flex align-text-bottom'>
-                            <Link href={`/posts/${post.slug}`}>
-                                <a className='block'>{post.title}</a>
-                            </Link>
-                            <em className='ml-3 text-slate-400 whitespace-nowrap'>
-                                <time className='text-sm' dateTime={post.date}>{post.date}</time>
-                            </em>
+            <div className='space-y-4'>
+                {
+                    latestPosts.map(
+                        (post, index) => <div key={index}>
+                            <div className='flex align-text-bottom'>
+                                <Link href={`/posts/${post.slug}`}>
+                                    <a className='block'>{post.title}</a>
+                                </Link>
+                                <em className='ml-3 text-slate-400 whitespace-nowrap'>
+                                    <time className='text-sm' dateTime={post.date}>{post.date}</time>
+                                </em>
+                            </div>
+                            <small>
+                                {post.description}
+                            </small>
                         </div>
-                        <small>
-                            {post.description}
-                        </small>
-                    </div>
-                )
-            }
+                    )
+                }
+            </div>
 
         </Default>
     </>;
