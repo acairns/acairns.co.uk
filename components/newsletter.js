@@ -10,7 +10,7 @@ export default function Newsletter() {
                 </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:ml-8">
-                <form id="revue-form" name="revue-form" target="_blank" method="post" action="http://newsletter.acairns.co.uk/add_subscriber" className="sm:flex">
+                <form id="revue-form" name="revue-form" target="_blank" method="post" action="https://newsletter.acairns.co.uk/add_subscriber" className="sm:flex">
                     <label htmlFor="email-address" className="sr-only">
                         Email address
                     </label>
