@@ -80,11 +80,17 @@ POST /profile
 }
 ```
 
+## Why We Need Intent
+
+@todo talk here about being unsure of the reason. If all we have is state change, all we can publish with events is `ProfileAddressWasUpdated`. Talk about the pain with CRUD events, maybe even circular references, etc.
+
+@todo could even embed VV's recent tweet about these "yuck" events.
+
+@todo talk about some type of separation. We may need different business processes if a support engineer is correcting a typo, or if a user is changing their address.
 
 
 
 ===
-
 
 
 
@@ -93,9 +99,6 @@ Unfortunately, when the intent of the user has been lost, we are forced into gue
 ### @TODOS
 
 
-
-
-@todo mention the relationship with events, named in the past-tense, with `PrimaryEmailWasSet`
 
 @todo avoid CRUD commands, such as `ChangeEmail`:\
 > It is quite common for developers to learn about Commands and to very quickly start creating Commands using vocabulary familiar to them such as “ChangeAddress”, “CreateUser”, or “DeleteClass”. This should be avoided as a default. Instead a team should be focused on what the use case really is.
