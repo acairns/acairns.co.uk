@@ -1,107 +1,96 @@
 ---
 slug: '!accidental-intent-cancelling'
 title: 'Accidental Intent Cancelling'
-date: '2022-09-20'
+date: '2022-10-10'
 tags:
   - cqrs
   - crud
   - ddd
 ---
 
-When we make a request to a REST API, there are a set of HTTP verbs the client can use in order to describe the action it wants the server to take. For example, we can use the `GET` verb to express we want a resource returned to us. Other verbs such as `PUT`, `POST`, `PATCH` and `DELETE` describe how we want data to change.
+Building software demands engineers regularly evaluate trade-offs. We must research different potential solutions and choose the option we believe best suits our needs. Since we are all human, from time to time, it's reasonable to assume we will choose an approach which accidentally introduces unforceen challenges.
 
-Imagine we wish to update our email address within our profile. We may make the following request:
+This is known as Accidental Complexity.
+
+In this article, I'd like to introduce a form of Accidental Complexity I've been referring to as _Accidental Intent Cancelling_.
+
+---
+
+When a user interacts with our application, they are communicating intent. Imagine a profile screen which contains a form where your postal address could be updated. Once changes are made, a button labelled "update" can be clicked.
+
+From this viewpoint everything looks fine. But if we zoom in, depending upon our choices, the intent of the user to update the address on their profile can be easily lost.
+
+## Example of Intent Cancelling
+
+Imagine we implement a RESTful API to process our example form and make the following request:
 
 ```http
-PATCH /profile
+PATCH /profile/123
 {
-    email: 'andrew@acairns.co.uk'
+    address: '123 The Street, Big City, AB1 2CD',
 }
 ```
 
-In this example, it's quite clear what the request from the client is: update the email address.
+Do we still know the intent of the user?
 
-But what about:
-```http
-PATCH /profile
-{
-    email_id: 'abc123'
-}
-```
+We have a `PATCH` request for a Profile with an ID of `123`. The request contains a new value for `address`. It's clear the user wants to update the address on their profile, right?
 
-Oh, what's going on here?
+No!
 
-We have a profile - that's the main resource. We're making a `PATCH` request and can assume we're making a partial update. We're setting the value of `email_id` - perhaps this is a system allowing multiple email addresses and we're selecting the new primary email address?
+Admit it - we guessed. We know _what_, but we don't know _why_. Depending upon what is orchestrating the API, anything could be happening - we have no idea! It could be the user updating their address; it could be our customer support team fixing a typo; or it could be an automated update during a Proof of Address process.
 
-Let's continue with our example:
+We are processing data, not behaviour.
 
-```http
-DELETE: /profile/emails/abc123
-```
-
-This is an easy one - we're removing one of our email addresses. Right?
-
-Actually, depending upon the process orchestrating our API, anything could be happening - we have no idea! This is because we are processing data, not behaviour.
-
-In the first example, we had a new `email` value being passed to us - but there is no way of us knowing if this was happening because the user was updating their email address, or potentially choosing from a pre-existing validated email address.
-
-In the second example, we have a new `email_id` being passed, which could hint to a previously existing email address being selected. But again, we have no idea why this is happening. This could be a process orchestrating the removal of email addresses and, as a result, selecting a new default.
-
-The final example may initially look less ambiguous - we are clearly removing an email address. Or are we? Could we be archiving the email address? Are we pruning duplicates? Perhaps we have a process fixing a bug and revoking email addresses using an invalid tld? Or revoking email addresses which haven't been verified within a 30 day period?
-
-We simply do not know. We're guessing.
+User intent is lost.
 
 
-## Assumptions
+## Trade-Offs
 
-Unfortunately, we are forced into guessing the behaviour of the user within these examples. The true intent has been lost. We know _what_ the data change looks like, but we do not know _why_. In our example, we know they want to make some change to their email address on their profile - but that's it.
+This is a common trade-off which is made with RESTful API designs. Unlike with Remote Procedure Calls (RPC) which issues an instruction to an application to perform a behaviour - a RESTful API client makes a request to describe the specific change to the data it wants to see happen.
 
-This is a common symptom of RESTful API design. Instead of issuing a command to an application to perform a behaviour - a client will make a request to describe the specific change to the data it wants to see happen. 
+This is not an article arguing against REST (or urging you to change how you design your APIs). In fact, many other patterns and technologies have similar trade-offs.
 
-This is not an article arguing against using REST, or urging you to change how you design your APIs. In fact, many other patterns (such as CDC) introduce similar constraints.
+The problem I'm highlighting is:
 
-The problem I see is: we adopt this trade-off accidentally.
+> we often accidentally adopt Intent Cancelling
 
-In our examples, we have a REST API where we are "representing state transfer". And, by design, a client is describing the state change required and not behaviour. And this is perfectly fine. Domains without significant complexity may have no reason to expose a more complex interface or model behaviour.
+Accidental Intent Cancelling often does not become apparent until much later into the development of a product or feature. Once clear intent is needed, it may require a significant refactoring investment to regain it.
 
-However, if you have significant complexity, it may be advantageous to issue instructions instead of state change.
+RESTful APIs _"represent state transfer"_ by design. A client is describing the state change required and not behaviour. And this may be perfectly fine. Domains without significant complexity may have no reason to have a more complex interface allowing the process of behavour over data.
 
+> [Most teams I meet have trouble with modeling behavior. They are more comfortable with modeling data.](https://twitter.com/yreynhout/status/1579750607992532993)
 
-## Avoid Accidental Intent Cancelling by Capturing Intent
+If your application has a sufficiant level of complexity, it may be best to _"lift the conversation from being data-centric to behavour-centric"_. Instead of state changing being determined from the outside, issue instructions to the application instead.
 
-An alternative approach is to issue a command to the application to give it something to do. Instead of describing the state which needs changed, instruct it to perform an action.
+## Tell Don't Ask
 
-With this approach, we capture the intent of the user. We know the user wishes to `SetPrimaryEmail` or `ArchiveTemporaryEmail`. No longer does the client know any specifics on how this will be achieved - it simply tells the application to do something and leaves the application to handle the details.
+Command can be issued to the application telling it to perform a behaviour. Instead of describing the state which needs changed, it is instructed it perform an action.
 
-The client would still make an HTTP request to the application. However, unlike our previous examples, the request will now describe the task to complete along with any required data:
+With this approach, we capture the intent of the user. We know the user wishes to `UpdateBillingAddress` or `CorrectCustomerAddress`. No longer does the client need to know the specifics on how the behaviour is achieved - it simply instructs the application to do something and trusts it to handle the details.
+
+The client can still make an HTTP request to an API. Unlike our previous example, the request will now issue a command complete with any required data:
+
 ```
 POST /profile
 {
   command: 'SetPrimaryEmail',
   data: {
-    email_id: 'abc123'
+    address: '123 The Street, Big City, AB1 2CD',
   }
 }
 ```
 
-Note: The examples are exactly that: examples. There are many ways to design API interfaces - and even more strong opinions.
 
 
-## Complexity
 
-I wanted to finish this post with a note on complexity. Eric Evan's DDD book was labeled _"tackling complexity in the heart of software"_ for a reason. Some domains are simply not complex enough, or critical enough to your business, to justify the additional complexity for patterns such as CQRS.
-
-But I strongly believe trade-offs within the design of our software should be, as much as possible, a conscious decision. We should be aware that traditional relational database will introduce temporal coupling. We should be aware that Change Data Capture (CDC) will introduce schema coupling. We should be aware when we loose the original intent of the user.
-
-
-# @TODOS
+===
 
 
 
 
+Unfortunately, when the intent of the user has been lost, we are forced into guessing the original behaviour. We know _what_ the data change looks like, but we do not know _why_. In our example, we know a request has been made to change the address on a profile - but that's it.
 
-
-
+### @TODOS
 
 
 
