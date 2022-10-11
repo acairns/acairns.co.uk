@@ -15,7 +15,7 @@ export default function Post({ title, date, tags, children }) {
                 {
                     tags && <div className='space-x-4 mb-4'>
                         {
-                            tags.map(tag => <Badge>{tag}</Badge>)
+                            tags.map(tag => <Badge key={tag}>{tag}</Badge>)
                         }
                     </div>
                 }
