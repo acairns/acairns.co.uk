@@ -28,9 +28,10 @@ jobs:
         run: |
           npm install pm2 -g
           pm2 --name Next start npm -- start
-          sleep 20
+          sleep 5
           node social.js
           pm2 delete 0
+          mv -R public/social out/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
