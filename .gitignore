@@ -36,3 +36,4 @@ yarn-error.log*
 
 ## custom
 public/sitemap.xml
+public/social/*

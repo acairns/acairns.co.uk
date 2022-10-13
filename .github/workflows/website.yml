@@ -24,6 +24,13 @@ jobs:
           node sitemap.js
           mv sitemap.xml out/
 
+      - name: Generate Social Cards 🌄
+        run: |
+          npm install pm2
+          pm2 --name Next start npm -- start
+          node social.js
+          pm2 delete 0
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
