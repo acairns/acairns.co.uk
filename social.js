@@ -18,7 +18,9 @@ const path = require('path');
 
     try {
         // launch a new headless browser
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true
+        });
 
         // loop over the urls
         for (let i = 0; i < posts.length; i++) {
