@@ -5,6 +5,7 @@ import { listPosts } from 'utils/posts';
 import Link from 'next/link';
 
 export default function Home({ latestPosts }) {
+    console.log('latestPosts', latestPosts);
     return <>
         <Head>
             <meta key="description" name="description" content="My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development." />
@@ -33,14 +34,14 @@ export default function Home({ latestPosts }) {
                         (post, index) => <div key={index}>
                             <div className='flex align-text-bottom'>
                                 <Link href={`/posts/${post.slug}`}>
-                                    <a className='block'>{post.title}</a>
+                                    <a className='block'>{post.frontmatter.title}</a>
                                 </Link>
                                 <em className='ml-3 text-slate-400 whitespace-nowrap'>
-                                    <time className='text-sm' dateTime={post.date}>{post.date}</time>
+                                    <time className='text-sm' dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
                                 </em>
                             </div>
                             <small>
-                                {post.description}
+                                {post.frontmatter.description}
                             </small>
                         </div>
                     )
