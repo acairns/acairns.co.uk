@@ -5,7 +5,6 @@ import { listPosts } from 'utils/posts';
 import Link from 'next/link';
 
 export default function Home({ latestPosts }) {
-    console.log('latestPosts', latestPosts);
     return <>
         <Head>
             <meta key="description" name="description" content="My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development." />

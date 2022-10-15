@@ -10,7 +10,7 @@ tags:
   - ddd
 ---
 
-Building software demands engineers regularly evaluate trade-offs. We must research different potential solutions and choose the option we believe best suits our needs. Since we are all human, from time to time, it's reasonable to assume we will choose an approach which accidentally introduces unforceen challenges.
+Building software demands engineers regularly evaluate trade-offs. We must research different potential solutions and choose the option we believe best suits our needs. Since we are all human it's reasonable to assume we will choose an approach which accidentally introduces unforceen challenges from time to time.
 
 This is known as Accidental Complexity.
 
@@ -18,9 +18,11 @@ In this article, I'd like to introduce a form of Accidental Complexity I've been
 
 ---
 
-When a user interacts with our application, they are communicating intent. Imagine a profile screen which contains a form where your postal address could be updated. Once changes are made, a button labelled "update" can be clicked.
+When a user interacts with our application, they are communicating intent. Imagine a profile screen which contains a form where your address could be updated. Once changes are made, a button labelled "update" can be clicked.
 
-From this viewpoint everything looks fine. But if we zoom in, depending upon our choices, the intent of the user to update the address on their profile can be easily lost.
+From this viewpoint - everything looks fine.
+
+But if we zoom in, depending upon our choices, the intent of the user to update the address on their profile can be easily lost.
 
 ## Example of Intent Cancelling
 
@@ -37,9 +39,9 @@ Do we still know the intent of the user?
 
 We have a `PATCH` request for a Profile with an ID of `123`. The request contains a new value for `address`. It's clear the user wants to update the address on their profile, right?
 
-No!
+No - that was a guess!
 
-Admit it - we guessed. We know _what_, but we don't know _why_. Depending upon what is orchestrating the API, anything could be happening - we have no idea! It could be the user updating their address; it could be our customer support team fixing a typo; or it could be an automated update during a Proof of Address process.
+We know _what_, but we don't know _why_. Depending upon what is orchestrating the API, anything could be happening - we have no idea! It could be the user updating their address; it could be our customer support team fixing a typo; or it could be an automated update during a Proof of Address process.
 
 We are processing data, not behaviour.
 
@@ -52,11 +54,9 @@ This is a common trade-off which is made with RESTful API designs. Unlike with R
 
 This is not an article arguing against REST (or urging you to change how you design your APIs). In fact, many other patterns and technologies have similar trade-offs.
 
-The problem I'm highlighting is:
+The problem I'm highlighting is: **too often intent is lost accidentally**.
 
-> we often accidentally adopt Intent Cancelling
-
-Accidental Intent Cancelling often does not become apparent until much later into the development of a product or feature. Once clear intent is needed, it may require a significant refactoring investment to regain it.
+Accidental Intent Cancelling often doesn't become apparent until much later into the development of a product or feature. Once clear intent is needed, it may require a significant refactoring investment to regain it.
 
 RESTful APIs _"represent state transfer"_ by design. A client is describing the state change required and not behaviour. And this may be perfectly fine. Domains without significant complexity may have no reason to have a more complex interface allowing the process of behavour over data.
 

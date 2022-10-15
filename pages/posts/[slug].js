@@ -42,13 +42,14 @@ const markdownOptions = {
     }
 };
 
-export default function Post({ content, frontmatter }) {
+export default function Post({ content, slug, frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
             <meta key="og:title" property="og:title" content={`${frontmatter.title} - Andrew Cairns`} />
             <meta key="description" name="description" content={frontmatter.description} />
             <meta key="og:description" property="og:description" content={frontmatter.description} />
+            <meta property="og:image" content={`//social/${slug}.png`} />
         </Head>
 
         <Layout title={frontmatter.title} date={frontmatter.date} tags={frontmatter.tags || []}>
