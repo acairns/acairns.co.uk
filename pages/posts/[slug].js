@@ -50,6 +50,7 @@ export default function Post({ content, slug, frontmatter }) {
             <meta key="description" name="description" content={frontmatter.description} />
             <meta key="og:description" property="og:description" content={frontmatter.description} />
             <meta key="og:image" property="og:image" content={`//social/${slug}.png`} />
+            <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         </Head>
 
         <Layout title={frontmatter.title} date={frontmatter.date} tags={frontmatter.tags || []}>
