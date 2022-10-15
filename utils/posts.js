@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+import { selectMesh } from "@/utils/social";
+
 export function listPosts() {
     const files = fs.readdirSync(path.join('_posts'));
 
@@ -13,17 +15,7 @@ export function listPosts() {
 
         const slug = filename.replace('.md', '');
 
-        const markdownWithMeta = fs.readFileSync(
-            path.join('_posts', filename),
-            'utf-8'
-        );
-
-        const { data: frontmatter } = matter(markdownWithMeta);
-
-        return {
-            slug,
-            ...frontmatter
-        };
+        return readPost(slug);
     });
 
     return tempPosts
@@ -37,12 +29,13 @@ export function readPost(slug) {
         'utf-8'
     );
 
-    const { data: frontmatter, content } = matter(markdownWithMeta)
+    const { data: frontmatter, content } = matter(markdownWithMeta);
 
     return {
         slug,
         content,
-        ...frontmatter
+        frontmatter,
+        mesh: selectMesh(frontmatter.mesh)
     };
 }
 

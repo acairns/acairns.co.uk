@@ -1,7 +1,9 @@
 ---
 slug: '!accidental-intent-cancelling'
 title: 'Accidental Intent Cancelling'
+description: "In this article, I introduce a form of Accidental Complexity I've been referring to as Accidental Intent Cancelling."
 date: '2022-10-10'
+mesh: '/mesh/01. Royal Heath.jpg'
 tags:
   - cqrs
   - crud
@@ -88,6 +90,86 @@ POST /profile
 
 @todo talk about some type of separation. We may need different business processes if a support engineer is correcting a typo, or if a user is changing their address.
 
+
+
+- Client makes data-centric calls to back-end
+- Domain has no verbs
+- Domain is glorified abstract of the data model
+- No behaviours
+  - Clients know the behaviour
+  - Behaviour could be written on a piece of paper
+  - Heads of the folk using the software
+
+
+- Source of truth for behaviour
+- Consistent, independent of what is calling
+  - Console command
+  - REST API
+  - Tests
+  - CRON job
+  - Mobile app
+
+
+- Retain intent by sending a message, not adata-centric request
+
+
+- Build up a command
+- UI may be different, Task-Based User Interface
+- > Because the UI must build Command objects it needs to be designed in such a way that the user intent can be derived from the actions of the user.
+
+
+Command
+```php
+final class MoveAddress
+{
+  public function __construct(
+      public readonly ProfileId $profileId,
+      public readonly Address $address,
+  ) {
+  }
+}
+```
+Handler
+```php
+final class MoveAddressHandler
+{
+  public function handle(MoveAddress $command) {
+    // domain logic
+  }
+}
+```
+
+
+Command
+```php
+final class CorrectAddress
+{
+  public function __construct(
+      public readonly ProfileId $profileId,
+      public readonly Address $address,
+      public readonly UserId $adminId,
+  ) {
+  }
+}
+```
+Handler
+```php
+final class CorrectAddressHandler
+{
+  public function handle(CorrectAddress $command) {
+    // domain logic
+  }
+}
+```
+
+And now... events!
+
+
+Imagine our application required Proof of Address for our customers. When the customer informs us they have moved address - we must ensure we have proof. However, it must be possible for our admins to correct simple typos within an address without triggering our Proof of Address processes.
+
+`CustomerMovedAddress` could be emitted when it was a true change of address.
+
+Otherwise, we could emit a `AddressWasCorrected` event.
 
 
 ===

@@ -1,5 +1,4 @@
 ---
-slug: 'intro-to-change-data-capture'
 title: 'Introduction to Change Data Capture'
 date: '2022-09-20'
 ---

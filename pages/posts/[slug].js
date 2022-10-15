@@ -42,7 +42,7 @@ const markdownOptions = {
     }
 };
 
-export default function Post({ content, ...frontmatter }) {
+export default function Post({ content, frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
@@ -66,7 +66,6 @@ export async function getStaticPaths() {
         })),
         fallback: false,
     }
-
 }
 
 export async function getStaticProps({ params: { slug } }) {
