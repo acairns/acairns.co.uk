@@ -10,7 +10,8 @@ function MyApp({ Component, pageProps }) {
 
       <title>Andrew Cairns</title>
 
-      <meta property="og:image" content="https://acairns.co.uk/andrewcairns_400x400.jpeg" />
+      <meta key="og:image" property="og:image" content="https://acairns.co.uk/andrewcairns_400x400.jpeg" />
+
       <meta property="og:site_name" content="Andrew Cairns" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@andrewcairns" />
