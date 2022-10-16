@@ -46,6 +46,7 @@ export default function Post({ content, slug, frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
+            <meta key="og:type" name="og:type" content="article" />
             <meta key="og:title" property="og:title" content={`${frontmatter.title} - Andrew Cairns`} />
             <meta key="description" name="description" content={frontmatter.description} />
             <meta key="og:description" property="og:description" content={frontmatter.description} />
