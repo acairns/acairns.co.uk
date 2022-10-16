@@ -12,11 +12,10 @@ export default function Post({ mesh, frontmatter }) {
     return <>
         <div className='overflow-hidden flex flex-col text-gray-700 pt-16 text-3xl px-16' style={{width: 1200, height: 675, ...background(mesh)}}>
 
-            <div className='z-10 bg-slate-400 rounded-t-md mx-36 h-3 shadow' />
-            <div className='z-20 bg-slate-300 rounded-t-lg mx-20 h-4 shadow-md' />
+            <div className='z-10 bg-slate-400 rounded-t-md opacity-80 mx-36 h-3 shadow' />
+            <div className='z-20 bg-slate-300 rounded-t-lg opacity-90 mx-20 h-4 shadow-md' />
 
             <div className="z-30 bg-white rounded-t-2xl shadow-lg p-12 relative flex flex-col flex-grow">
-                <img className="w-6 m-auto opacity-50" src="/andrew-cairns.png" />
                 <div className="flex flex-grow items-center">
                     <h1 className="text-8xl leading-none pb-4 -mb-4 font-extrabold drop-shadow-md">
                         {frontmatter.title}
@@ -27,6 +26,7 @@ export default function Post({ mesh, frontmatter }) {
                         <img className="rounded-full w-14 h-14" src="/andrewcairns_400x400.jpeg" />
                         <p className="ml-4">by Andrew Cairns</p>
                     </div>
+                    <img className="w-6 m-auto opacity-50" src="/andrew-cairns.png" />
                 </div>
             </div>
         </div>
