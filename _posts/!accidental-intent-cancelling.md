@@ -2,7 +2,7 @@
 slug: '!accidental-intent-cancelling'
 title: 'Accidental Intent Cancelling'
 description: "In this article, I introduce a form of Accidental Complexity I've been referring to as Accidental Intent Cancelling."
-date: '2022-10-10'
+date: '2022-10-16'
 mesh: '/mesh/01. Royal Heath.jpg'
 tags:
   - cqrs
@@ -45,18 +45,18 @@ We know _what_, but we don't know _why_. Depending upon what is orchestrating th
 
 We are processing data, not behaviour.
 
-User intent is lost.
+Intent has been lost.
 
 
-## Trade-Offs
+## Accidental Trade-Off
 
-This is a common trade-off which is made with RESTful API designs. Unlike with Remote Procedure Calls (RPC) which issues an instruction to an application to perform a behaviour - a RESTful API client makes a request to describe the specific change to the data it wants to see happen.
+This is a common trade-off made with a RESTful API design. Unlike with Remote Procedure Calls (RPC) which issues an instruction to an application to perform an action - a RESTful API client makes a request to describe the specific change to the data it wants to see happen.
 
 This is not an article arguing against REST (or urging you to change how you design your APIs). In fact, many other patterns and technologies have similar trade-offs.
 
 The problem I'm highlighting is: **too often intent is lost accidentally**.
 
-Accidental Intent Cancelling often doesn't become apparent until much later into the development of a product or feature. Once clear intent is needed, it may require a significant refactoring investment to regain it.
+Accidental Intent Cancelling may not become apparent until after significant development of a product or feature. Once clear intent is needed, it may require a significant refactoring investment to regain it.
 
 RESTful APIs _"represent state transfer"_ by design. A client is describing the state change required and not behaviour. And this may be perfectly fine. Domains without significant complexity may have no reason to have a more complex interface allowing the process of behavour over data.
 
@@ -64,127 +64,52 @@ RESTful APIs _"represent state transfer"_ by design. A client is describing the 
 
 If your application has a sufficiant level of complexity, it may be best to _"lift the conversation from being data-centric to behavour-centric"_. Instead of state changing being determined from the outside, issue instructions to the application instead.
 
-## Tell Don't Ask
 
-Command can be issued to the application telling it to perform a behaviour. Instead of describing the state which needs changed, it is instructed it perform an action.
+## Why Intent Is Needed
 
-With this approach, we capture the intent of the user. We know the user wishes to `UpdateBillingAddress` or `CorrectCustomerAddress`. No longer does the client need to know the specifics on how the behaviour is achieved - it simply instructs the application to do something and trusts it to handle the details.
+Let's use our example to explore the trade-offs associated with modelling data over behaviour.
 
-The client can still make an HTTP request to an API. Unlike our previous example, the request will now issue a command complete with any required data:
+Imagine we are presented with a business requirement:
+
+_"When a User updates their Address, perform Proof of Address screening."_
+
+We recognise the need to trigger a process when something happens within our system and introduce a `ProfileAddressWasUpdated` event. Next, when this event is emitted, we start our Proof of Address screening process.
+
+Everything is fine, until bugs are raised that Proof of Address screening is happening unexpectedly when our support team make corrections from our back-office system.
+
+Because our system is unaware of the original intent, we have no way to differentiate requests. We have a webapp, support admin, background processes and mobile clients all making the same request to update data for different reasons.
+
+Greg Young described this as:
+> The domain had become a glorified abstraction of the data model.
+
+If only our system modelled behaviour - we wouldn't find ourselves in the situation where we need to refactor our client applications.
+
+## Feature Envy and Tell Don't Ask
+
+We've explored what a data-centric approach may look like, and why the approach may not be desirable. A behaviour-centric approach, instead of describing the state to be changed, describes the action to be taken.
 
 ```
 POST /profile
 {
-  command: 'SetPrimaryEmail',
-  data: {
-    address: '123 The Street, Big City, AB1 2CD',
-  }
+    command: 'UpdateBillingAddress',
+    data: {
+        address: '123 The Street, Big City, AB1 2CD',
+    }
 }
 ```
 
-## Why We Need Intent
+Intent here is captured and sent to the application. We can now easily determine if we are handling an `UpdateBillingAddress` or `CorrectCustomerAddress` use case. Domain-specific events can be broadcasted and we will no longer have the unexpected behaviour from the previous example.
 
-@todo talk here about being unsure of the reason. If all we have is state change, all we can publish with events is `ProfileAddressWasUpdated`. Talk about the pain with CRUD events, maybe even circular references, etc.
+No longer do client applications know specifics about how a behaviour is achieved - it simply sends instructions the correct domain to perform the behaviour and trusts it to handle the details.
 
-@todo could even embed VV's recent tweet about these "yuck" events.
+I recognise this as _Feature Envy_: an anti-pattern which describes a situation where "the outside" requests internal information in order to perform behaviour.
 
-@todo talk about some type of separation. We may need different business processes if a support engineer is correcting a typo, or if a user is changing their address.
+By following _Tell Don't Ask_, our webapp; support admin; background processes and mobile applications no longer need to know the specifics of a behaviour. They don't need to know the data changes and domain rules do not need to be scattered across all applications.
 
+Instead, behaviour is encapsulated within the domain. Clients can still make an HTTP request to an API. Unlike our previous example, the request will now issue a command complete with any required data.
 
+## Consider Intent
 
-- Client makes data-centric calls to back-end
-- Domain has no verbs
-- Domain is glorified abstract of the data model
-- No behaviours
-  - Clients know the behaviour
-  - Behaviour could be written on a piece of paper
-  - Heads of the folk using the software
+Every choice we make as engineers comes with a set of trade-offs. Some we are aware off, but some we are not - and we only learn about them the hard way. The key to making a good decision is to be as aware of as many trade-offs as possible.
 
-
-- Source of truth for behaviour
-- Consistent, independent of what is calling
-  - Console command
-  - REST API
-  - Tests
-  - CRON job
-  - Mobile app
-
-
-- Retain intent by sending a message, not adata-centric request
-
-
-- Build up a command
-- UI may be different, Task-Based User Interface
-- > Because the UI must build Command objects it needs to be designed in such a way that the user intent can be derived from the actions of the user.
-
-
-Command
-```php
-final class MoveAddress
-{
-  public function __construct(
-      public readonly ProfileId $profileId,
-      public readonly Address $address,
-  ) {
-  }
-}
-```
-Handler
-```php
-final class MoveAddressHandler
-{
-  public function handle(MoveAddress $command) {
-    // domain logic
-  }
-}
-```
-
-
-Command
-```php
-final class CorrectAddress
-{
-  public function __construct(
-      public readonly ProfileId $profileId,
-      public readonly Address $address,
-      public readonly UserId $adminId,
-  ) {
-  }
-}
-```
-Handler
-```php
-final class CorrectAddressHandler
-{
-  public function handle(CorrectAddress $command) {
-    // domain logic
-  }
-}
-```
-
-And now... events!
-
-
-Imagine our application required Proof of Address for our customers. When the customer informs us they have moved address - we must ensure we have proof. However, it must be possible for our admins to correct simple typos within an address without triggering our Proof of Address processes.
-
-`CustomerMovedAddress` could be emitted when it was a true change of address.
-
-Otherwise, we could emit a `AddressWasCorrected` event.
-
-
-===
-
-
-
-Unfortunately, when the intent of the user has been lost, we are forced into guessing the original behaviour. We know _what_ the data change looks like, but we do not know _why_. In our example, we know a request has been made to change the address on a profile - but that's it.
-
-### @TODOS
-
-
-
-@todo avoid CRUD commands, such as `ChangeEmail`:\
-> It is quite common for developers to learn about Commands and to very quickly start creating Commands using vocabulary familiar to them such as “ChangeAddress”, “CreateUser”, or “DeleteClass”. This should be avoided as a default. Instead a team should be focused on what the use case really is.
-> Is it “ChangeAddress”? Is there a difference between “Correcting an Address” and “Relocating the Customer”? It likely will be if the domain in question is for a telephone company that sends the yellow pages to a customer when they move to a new location.
-> Is it “CreateUser” or is it “RegisterUser”? “DeleteClass” or “DeregisterStudent”. This process in naming can lead to great amounts of domain insight. To begin defining Commands, the best place to begin is in defining use cases, as generally a Command and a use case align.
-> It is also important to note that sometimes the only use case that exists for a portion of data is to “create”, “edit”, “update”, “change”, or “delete” it. All applications carry information that is simply supporting information. It is important though to not fall into the trap of mistaking places where there are use cases associated with intent for these CRUD only places.
-> Commands as a concept are not difficult but are different for many developers. Many developers see the creation of the Commands as a lot of work. If the creation of Commands is a bottleneck in the workflow, many of the ideas being discussed are likely being applied in an incorrect location.
+The next time you are faced with a decision - be aware of intent and the role it plays within your system.
