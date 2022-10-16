@@ -46,11 +46,14 @@ export default function Post({ content, slug, frontmatter }) {
     return <>
         <Head>
             <title>{frontmatter.title} - Andrew Cairns</title>
+
+            <meta key="description" name="description" content={frontmatter.description} />
+
             <meta key="og:type" name="og:type" content="article" />
             <meta key="og:title" property="og:title" content={`${frontmatter.title} - Andrew Cairns`} />
-            <meta key="description" name="description" content={frontmatter.description} />
             <meta key="og:description" property="og:description" content={frontmatter.description} />
-            <meta key="og:image" property="og:image" content={`//social/${slug}.png`} />
+            <meta key="og:image" property="og:image" content={`https://acairns.co.uk//social/${slug}.png`} />
+
             <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
         </Head>
 
