@@ -3,6 +3,7 @@ slug: 'recognising-value-objects-and-dtos'
 title: 'Recognising Value Objects and DTOs'
 description: "Is it possible to recognise a class as a Value Object or DTO?"
 date: '2022-09-25'
+mesh: "/mesh/62. Amour.jpg"
 tags:
   - dto
   - vo
