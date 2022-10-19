@@ -1,9 +1,9 @@
 ---
-slug: '!accidental-intent-cancelling'
+slug: 'accidental-intent-cancelling'
 title: 'Accidental Intent Cancelling'
 description: "In this article, I introduce a form of Accidental Complexity I've been referring to as Accidental Intent Cancelling."
-date: '2022-10-16'
-mesh: '/mesh/01. Royal Heath.jpg'
+date: '2022-10-19'
+mesh: '/mesh/49. Soft Peach.jpg'
 tags:
   - cqrs
   - crud
