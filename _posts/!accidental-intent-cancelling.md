@@ -48,15 +48,15 @@ We are processing data, not behaviour.
 Intent has been lost.
 
 
-## Accidental Trade-Off
+## Accidental Compromises
 
 This is a common trade-off made with a RESTful API design. Unlike with Remote Procedure Calls (RPC) which issues an instruction to an application to perform an action - a RESTful API client makes a request to describe the specific change to the data it wants to see happen.
 
-This is not an article arguing against REST (or urging you to change how you design your APIs). In fact, many other patterns and technologies have similar trade-offs.
+This is not an article arguing against REST (or urging you to change how you design your APIs). In fact, many other patterns and technologies have a similar trade-off.
 
 The problem I'm highlighting is: **too often intent is lost accidentally**.
 
-Accidental Intent Cancelling may not become apparent until after significant development of a product or feature. Once clear intent is needed, it may require a significant refactoring investment to regain it.
+Accidental Intent Cancelling may not become apparent until after significant development of a product or feature. Once clear intent is needed, it may require a non-trivial amount of refactoring and investment to regain.
 
 RESTful APIs _"represent state transfer"_ by design. A client is describing the state change required and not behaviour. And this may be perfectly fine. Domains without significant complexity may have no reason to have a more complex interface allowing the process of behavour over data.
 
@@ -67,22 +67,20 @@ If your application has a sufficiant level of complexity, it may be best to _"li
 
 ## Why Intent Is Needed
 
-Let's use our example to explore the trade-offs associated with modelling data over behaviour.
-
-Imagine we are presented with a business requirement:
+Let's use our example to explore the difference when modelling data over behaviour. Imagine we are presented with the following business requirement:
 
 _"When a User updates their Address, perform Proof of Address screening."_
 
-We recognise the need to trigger a process when something happens within our system and introduce a `ProfileAddressWasUpdated` event. Next, when this event is emitted, we start our Proof of Address screening process.
+We recognise the need to trigger a process when something happens within our system. A new `ProfileAddressWasUpdated` event is published. Now, when this event happens, we start the Proof of Address screening process.
 
-Everything is fine, until bugs are raised that Proof of Address screening is happening unexpectedly when our support team make corrections from our back-office system.
+Everything is fine - until bugs are raised that Proof of Address screening is happening unexpectedly. We investigate and discover it happens when our support team make corrections to addresses using our own admin system.
 
 Because our system is unaware of the original intent, we have no way to differentiate requests. We have a webapp, support admin, background processes and mobile clients all making the same request to update data for different reasons.
 
 Greg Young described this as:
 > The domain had become a glorified abstraction of the data model.
 
-If only our system modelled behaviour - we wouldn't find ourselves in the situation where we need to refactor our client applications.
+If only our system modelled behaviour - we wouldn't find ourselves in the situation where we need to refactor our client applications (or worse, introduce a hack) to determine which address change is relevant, and which is not!
 
 ## Feature Envy and Tell Don't Ask
 
@@ -92,7 +90,7 @@ We've explored what a data-centric approach may look like, and why the approach 
 POST /profile
 {
     command: 'UpdateBillingAddress',
-    data: {
+    payload: {
         address: '123 The Street, Big City, AB1 2CD',
     }
 }
@@ -102,14 +100,16 @@ Intent here is captured and sent to the application. We can now easily determine
 
 No longer do client applications know specifics about how a behaviour is achieved - it simply sends instructions the correct domain to perform the behaviour and trusts it to handle the details.
 
-I recognise this as _Feature Envy_: an anti-pattern which describes a situation where "the outside" requests internal information in order to perform behaviour.
+I recognise this as **Feature Envy**: an anti-pattern which describes a situation where _"the outside"_ requests internal information in order to perform behaviour.
 
-By following _Tell Don't Ask_, our webapp; support admin; background processes and mobile applications no longer need to know the specifics of a behaviour. They don't need to know the data changes and domain rules do not need to be scattered across all applications.
+By following **Tell Don't Ask**, our webapp; support admin; background processes and mobile applications no longer need to know the specifics of a behaviour. They don't need to know the data changes and domain rules do not need to be scattered across all applications.
 
-Instead, behaviour is encapsulated within the domain. Clients can still make an HTTP request to an API. Unlike our previous example, the request will now issue a command complete with any required data.
+Instead, behaviour is encapsulated within the domain. Clients can still make an HTTP request to an API. Unlike our previous example, the request will now issue a command containing essential information.
 
 ## Consider Intent
 
-Every choice we make as engineers comes with a set of trade-offs. Some we are aware off, but some we are not - and we only learn about them the hard way. The key to making a good decision is to be as aware of as many trade-offs as possible.
+Engineers must evaluate trade-offs when making a decision. To make quality decisions, we need as much information as possible. Decision making improves with experience because we have more knowledge and understanding of potential trade-offs and compromises.
 
-The next time you are faced with a decision - be aware of intent and the role it plays within your system.
+The next time you are faced with a decision - be mindful of the role intent plays within your system. Ensure, if you are cancelling intent, it's a concious trade-off. Otherwise, you may find yourself guessing what the original behaviour of the user was.
+
+At least, consider modelling behaviour as an option.
