@@ -110,6 +110,6 @@ Instead, behaviour is encapsulated within the domain. Clients can still make an 
 
 Engineers must evaluate trade-offs when making a decision. To make quality decisions, we need as much information as possible. Decision making improves with experience because we have more knowledge and understanding of potential trade-offs and compromises.
 
-The next time you are faced with a decision - be mindful of the role intent plays within your system. Ensure, if you are cancelling intent, it's a concious trade-off. Otherwise, you may find yourself guessing what the original behaviour of the user was.
+The next time you are faced with a decision - be mindful of the role intent plays within your system. Ensure, if you are cancelling intent, it's a conscious trade-off. Otherwise, you may find yourself guessing what the original behaviour of the user was.
 
 At least, consider modelling behaviour as an option.
