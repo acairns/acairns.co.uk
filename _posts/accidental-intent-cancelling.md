@@ -10,7 +10,7 @@ tags:
   - ddd
 ---
 
-Building software demands engineers regularly evaluate trade-offs. We must research different potential solutions and choose the option we believe best suits our needs. Since we are all human it's reasonable to assume we will choose an approach which accidentally introduces unforceen challenges from time to time.
+Building software demands engineers regularly evaluate trade-offs. We must research different potential solutions and choose the option we believe best suits our needs. Since we are all human it's reasonable to assume we will choose an approach which accidentally introduces unforeseen challenges from time to time.
 
 This is known as Accidental Complexity.
 
@@ -62,7 +62,7 @@ RESTful APIs _"represent state transfer"_ by design. A client is describing the 
 
 > [Most teams I meet have trouble with modeling behavior. They are more comfortable with modeling data.](https://twitter.com/yreynhout/status/1579750607992532993)
 
-If your application has a sufficiant level of complexity, it may be best to _"lift the conversation from being data-centric to behavour-centric"_. Instead of state changing being determined from the outside, issue instructions to the application instead.
+If your application has a sufficient level of complexity, it may be best to _"lift the conversation from being data-centric to behavour-centric"_. Instead of state changing being determined from the outside, issue instructions to the application instead.
 
 
 ## Why Intent Is Needed
