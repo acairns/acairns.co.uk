@@ -1,5 +1,4 @@
 ---
-slug: 'accidental-intent-cancelling'
 title: 'Accidental Intent Cancelling'
 description: "In this article, I introduce a form of Accidental Complexity I've been referring to as Accidental Intent Cancelling."
 date: '2022-10-19'
