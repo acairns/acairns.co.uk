@@ -4,12 +4,14 @@ import matter from 'gray-matter';
 
 import { selectMesh } from "@/utils/social";
 
+const production = process.env.NODE_ENV === 'production';
+
 export function listPosts() {
     const files = fs.readdirSync(path.join('_posts'));
 
     const tempPosts = files.map((filename) => {
 
-        if (filename.startsWith('!')) {
+        if (production && filename.startsWith('!')) {
             return null;
         }
 
@@ -40,5 +42,5 @@ export function readPost(slug) {
 }
 
 export function sortByDate(a, b) {
-    return new Date(b.date) - new Date(a.date)
+    return new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
 }
