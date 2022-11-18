@@ -2,6 +2,7 @@ import Link from 'next/link'
 import GitHub from 'components/icons/github';
 import LinkedIn from 'components/icons/linkedin';
 import Twitter from 'components/icons/twitter';
+import Mastodon from 'components/icons/mastodon';
 import profilePic from "public/andrewcairns_400x400.jpeg";
 
 export default function Author() {
@@ -18,6 +19,9 @@ export default function Author() {
             </Link>
             <Link href="https://www.linkedin.com/in/andrewcairns/">
                 <a><LinkedIn className='w-5 h-5 fill-white -mt-1' /></a>
+            </Link>
+            <Link href="https://phpc.social/@acairns">
+                <a rel="me"><Mastodon className='w-5 h-5 fill-white' /></a>
             </Link>
         </div>
     </div>;
