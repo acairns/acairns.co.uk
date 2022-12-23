@@ -14,6 +14,6 @@ export default function Default({ title, children }) {
                 </div>
             </div>
         </div>
-        <Footer />
+        { /* <Footer /> */ }
     </div>;
 }

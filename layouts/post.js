@@ -32,6 +32,6 @@ export default function Post({ title, date, tags, children }) {
                 </div>
             </div>
         </div>
-        <Footer />
+        { /* <Footer /> */ }
     </div>;
 }
