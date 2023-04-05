@@ -27,7 +27,7 @@ export default function Home({ latestPosts }) {
             </p>
 
             <p className='prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md'>
-                Recently, I decided to move my writing to <a href="https://acairns.substack.com" target="_blank" className="bg-orange-600 text-white -rotate-2">Substack</a>
+                Recently, I decided to move my writing to <a href="https://acairns.substack.com" target="_blank" className="bg-orange-600 text-white -rotate-2">Substack</a>,
                 and also decided to start a <a href="https://www.youtube.com/@andrew.cairns" target="_blank" className="bg-red-600 text-white rotate-2">Devlog on YouTube</a>!
                 If you'd like to stay in the loop with my content - follow me there!
             </p>
