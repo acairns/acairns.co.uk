@@ -2,7 +2,7 @@ import Link from "next/link";
 import GitHub from "components/icons/github";
 import LinkedIn from "components/icons/linkedin";
 import Twitter from "components/icons/twitter";
-import Mastodon from "components/icons/mastodon";
+import Discord from "components/icons/discord";
 import profilePic from "public/andrewcairns_400x400.jpeg";
 import YouTube from "./icons/youtube";
 
@@ -34,6 +34,11 @@ export default function Author() {
         <Link href="https://youtube.com/@metaphoricallyspeaking">
           <a rel="me">
             <YouTube className="w-5 h-5 fill-white" />
+          </a>
+        </Link>
+        <Link href="https://discord.gg/4xhhNW9v44">
+          <a>
+            <Discord className="w-6 h-6 fill-white" />
           </a>
         </Link>
       </div>

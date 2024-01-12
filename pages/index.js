@@ -2,7 +2,8 @@ import Author from "components/author";
 import Head from "next/head";
 import Default from "layouts/default";
 import { listPosts } from "utils/posts";
-import Link from "next/link";
+import Discord from "components/icons/discord";
+import Twitter from "components/icons/twitter";
 
 export default function Home({ latestPosts }) {
   return (
@@ -69,13 +70,20 @@ export default function Home({ latestPosts }) {
         </p>
 
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
-          That's enough about me:{" "}
+          That's enough about me: introduce yourself!{" "}
+          <a
+            href="https://discord.gg/4xhhNW9v44"
+            target="_blank"
+            className="bg-[#7289da] fill-white -rotate-2"
+          >
+            <Discord className="w-6 h-6 inline" />
+          </a>{" "}
           <a
             href="https://twitter.com/andrewcairns"
             target="_blank"
-            className="bg-blue-300 text-slate-700 -rotate-1"
+            className="bg-[#1DA1F2] fill-white rotate-3"
           >
-            introduce yourself!
+            <Twitter className="mx-0.5 w-5 h-5 inline" />
           </a>
         </p>
 
