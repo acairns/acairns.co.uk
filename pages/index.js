@@ -24,27 +24,36 @@ export default function Home({ latestPosts }) {
       <Default title="Howdy!" narrow>
         <Author />
         <p>
-          My name is Andrew Cairns and I'm a Software Engineer and Content
-          Creator living in Scotland.
+          My name is Andrew Cairns and I'm a Software Content Creator and
+          Engineer living in Scotland.
         </p>
         <p>
           I've built software since Turbo Pascal on Amstrad - an old language no
           one remembers for an old computer no one used.
         </p>
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
-          I'm curently a software and content consultant through my company{" "}
+          I'm mostly creating content for my{" "}
           <a
+            href="https://www.youtube.com/@metaphoricallyspeaking"
+            target="_blank"
+            className="bg-red-600 text-white rotate-2"
+          >
+            YouTube
+          </a>{" "}
+          channel while also doing some consultanting.
+        </p>
+
+        {/* <a
             href="https://trypatchwork.com"
             target="_blank"
             className="bg-indigo-600 text-white rotate-2"
           >
             Patchwork
-          </a>
-          .
-        </p>
+          </a> */}
 
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
-          Previously, I've worked at places like{" "}
+          Previously, I've held senior roles such as Staff Engineer and VP of
+          Enginneering. I've worked at places like{" "}
           <a
             href="https://transfergo.com"
             target="_blank"
@@ -52,21 +61,22 @@ export default function Home({ latestPosts }) {
           >
             TransferGo
           </a>{" "}
-          where I was building Compliance, Risk and Anti-money Laundering stuff.
+          building Compliance, Risk and Anti-money Laundering things.
+        </p>
+
+        <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
           I spend my spare time kayaking and coaching youth football.
         </p>
 
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
-          Recently, I decided to take{" "}
+          That's enough about me:{" "}
           <a
-            href="https://www.youtube.com/@andrew.cairns"
+            href="https://twitter.com/andrewcairns"
             target="_blank"
-            className="bg-red-600 text-white rotate-2"
+            className="bg-blue-300 text-slate-700 -rotate-1"
           >
-            YouTube
-          </a>{" "}
-          more seriously! If you'd like to stay in the loop with my content -
-          follow me there!
+            introduce yourself!
+          </a>
         </p>
 
         {/*

@@ -31,7 +31,7 @@ export default function Author() {
             <LinkedIn className="w-5 h-5 fill-white -mt-1" />
           </a>
         </Link>
-        <Link href="https://youtube.com/@andrew.cairns">
+        <Link href="https://youtube.com/@metaphoricallyspeaking">
           <a rel="me">
             <YouTube className="w-5 h-5 fill-white" />
           </a>
