@@ -1,59 +1,97 @@
-import {
-  json,
-  type LoaderFunctionArgs,
-  type ActionFunctionArgs,
-} from "@remix-run/cloudflare";
-import { Form, useLoaderData } from "@remix-run/react";
+import { type MetaFunction } from "@remix-run/react";
 
-const key = "__my-key__";
-
-export async function loader({ context }: LoaderFunctionArgs) {
-  const { MY_KV } = context.env;
-  const value = await MY_KV.get(key);
-  return json({ value });
-}
-
-export async function action({ request, context }: ActionFunctionArgs) {
-  const { MY_KV: myKv } = context.env;
-
-  if (request.method === "POST") {
-    const formData = await request.formData();
-    const value = formData.get("value") as string;
-    await myKv.put(key, value);
-    return null;
-  }
-
-  if (request.method === "DELETE") {
-    await myKv.delete(key);
-    return null;
-  }
-
-  throw new Error(`Method not supported: "${request.method}"`);
-}
+import Author from "~/components/Author";
+import Discord from "~/components/icons/discord";
+import Twitter from "~/components/icons/twitter";
+import Default from "~/components/layouts/Default";
 
 export default function Index() {
-  const { value } = useLoaderData<typeof loader>();
   return (
-    <div className="bg-green-200">
-      <h1>Welcome to Remix</h1>
-      {value ? (
-        <>
-          <p>Value: {value}</p>
-          <Form method="DELETE">
-            <button>Delete</button>
-          </Form>
-        </>
-      ) : (
-        <>
-          <p>No value</p>
-          <Form method="POST">
-            <label htmlFor="value">Set value: </label>
-            <input type="text" name="value" id="value" required />
-            <br />
-            <button>Save</button>
-          </Form>
-        </>
-      )}
+    <div>
+      <Default title="Howdy!" narrow>
+        <Author />
+        <p>
+          My name is Andrew Cairns and I'm a Software Content Creator and
+          Engineer living in Scotland.
+        </p>
+        <p>
+          I've built software since Turbo Pascal on Amstrad - an old language no
+          one remembers for an old computer no one used.
+        </p>
+        <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
+          I'm mostly creating content for my{" "}
+          <a
+              href="https://www.youtube.com/@metaphoricallyspeaking"
+              target="_blank"
+              className="bg-red-600 text-white rotate-2"
+          >
+            YouTube
+          </a>{" "}
+          channel while also doing some consultanting.
+        </p>
+
+        {/* <a
+            href="https://trypatchwork.com"
+            target="_blank"
+            className="bg-indigo-600 text-white rotate-2"
+          >
+            Patchwork
+          </a> */}
+
+        <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
+          Previously, I've held senior roles such as Staff Engineer and VP of
+          Enginneering. I've worked at places like{" "}
+          <a
+              href="https://transfergo.com"
+              target="_blank"
+              className="bg-yellow-300 text-slate-700 -rotate-1"
+          >
+            TransferGo
+          </a>{" "}
+          building Compliance, Risk and Anti-money Laundering things.
+        </p>
+
+        <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
+          I spend my spare time kayaking and coaching youth football.
+        </p>
+
+        <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
+          That's enough about me: introduce yourself!{" "}
+          <a
+              href="https://discord.gg/4xhhNW9v44"
+              target="_blank"
+              className="bg-[#7289da] fill-white -rotate-2"
+          >
+            <Discord className="w-6 h-6 inline" />
+          </a>{" "}
+          <a
+              href="https://twitter.com/andrewcairns"
+              target="_blank"
+              className="bg-[#1DA1F2] fill-white rotate-3"
+          >
+            <Twitter className="mx-0.5 w-5 h-5 inline" />
+          </a>
+        </p>
+
+      </Default>
     </div>
   );
 }
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Andrew Cairns" },
+    {
+      property: "og:title",
+      content: "Andrew Cairns",
+    },
+    {
+      name: "description",
+      content: "My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development.",
+    },
+    {
+      name: "og:description",
+      content: "My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development.",
+    },
+  ];
+};
