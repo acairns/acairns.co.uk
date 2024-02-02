@@ -62,14 +62,14 @@ export default function Index() {
               target="_blank"
               className="bg-[#7289da] fill-white -rotate-2"
           >
-            <Discord className="w-6 h-6 inline" />
+            <Discord className="mb-1 w-6 h-6 inline" />
           </a>{" "}
           <a
               href="https://twitter.com/andrewcairns"
               target="_blank"
               className="bg-[#1DA1F2] fill-white rotate-3"
           >
-            <Twitter className="mx-0.5 w-5 h-5 inline" />
+            <Twitter className="mx-0.5 mb-1 w-5 h-5 inline" />
           </a>
         </p>
 
