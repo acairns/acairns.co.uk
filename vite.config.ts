@@ -5,6 +5,8 @@ import {
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+// https://remix.run/docs/en/main/future/vite#configuration
+
 export default defineConfig({
   plugins: [
     remix({
