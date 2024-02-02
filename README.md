@@ -1,17 +1,36 @@
-# acairns.co.uk
+# Welcome to Remix + Vite!
 
-Remember to install the stuff:
-```shell
-npm install
-```
+📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
 
-To do dev stuff:
-```shell
+## Development
+
+Run the Vite dev server:
+
+```shellscript
 npm run dev
 ```
 
-To create a static export:
-```shell
-npm run export
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
 ```
-...but you probably don't need to do that. Just deploy to master and github actions will do it's thing
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+- `build/server`
+- `build/client`
