@@ -8,7 +8,7 @@ import Default from "~/components/layouts/Default";
 export default function Index() {
   return (
     <div>
-      <Default title="Howdy!" narrow>
+      <Default title="Howdy!">
         <Author />
         <p>
           My name is Andrew Cairns and I'm a Software Content Creator and

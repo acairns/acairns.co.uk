@@ -17,19 +17,19 @@ export default function Author() {
       />
       <div className="flex items-center justify-center space-x-4 -mt-1 bg-gray-700 p-3 text-white border-t border-gray-800">
         <Link to="https://twitter.com/andrewcairns">
-          <Twitter className="w-5 h-5 fill-white" />
+          <Twitter className="w-4 h-4 fill-white" />
         </Link>
         <Link to="https://github.com/andrewcairns">
-          <GitHub className="w-5 h-5 fill-white" />
+          <GitHub className="w-4 h-4 fill-white" />
         </Link>
         <Link to="https://www.linkedin.com/in/andrewcairns/">
-          <LinkedIn className="w-5 h-5 fill-white -mt-1" />
+          <LinkedIn className="w-4 h-4 fill-white -mt-1" />
         </Link>
         <Link to="https://youtube.com/@metaphoricallyspeaking">
           <YouTube className="w-5 h-5 fill-white" />
         </Link>
         <Link to="https://discord.gg/4xhhNW9v44">
-          <Discord className="w-6 h-6 fill-white" />
+          <Discord className="w-5 h-5 fill-white" />
         </Link>
       </div>
     </div>
