@@ -3,6 +3,7 @@ import { type MetaFunction } from "@remix-run/react";
 import Author from "~/components/Author";
 import Discord from "~/components/icons/discord";
 import Twitter from "~/components/icons/twitter";
+import YouTube from "~/components/icons/youtube";
 import Default from "~/components/layouts/Default";
 
 export default function Index() {
@@ -25,6 +26,7 @@ export default function Index() {
               target="_blank"
               className="bg-red-600 text-white rotate-2"
           >
+            <YouTube className="mx-0.5 mr-1.5 mb-1 w-6 h-6 inline fill-white" />
             YouTube
           </a>{" "}
           channel while also doing some consultanting.
