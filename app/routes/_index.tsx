@@ -39,8 +39,8 @@ export default function Index() {
           </a> */}
 
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
-          Previously, I've held senior roles such as Staff Engineer and VP of
-          Enginneering. I've worked at places like{" "}
+          Previously, I've held roles such as Staff Engineer and VP of
+          Engineering. Worked at places like{" "}
           <a
               href="https://transfergo.com"
               target="_blank"
