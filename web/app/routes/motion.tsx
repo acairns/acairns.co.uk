@@ -2,7 +2,7 @@ import Player from "~/components/Player";
 
 export default function Index() {
   return (
-    <div className="bg-red-400">
+    <div>
         <Player project="project" />
     </div>
   );

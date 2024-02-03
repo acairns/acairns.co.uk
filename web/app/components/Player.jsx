@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export default function Player({project}) {
+export default function Player({project, auto = null}) {
     const [initialRenderComplete, setInitialRenderComplete] = useState(false);
 
     // This useEffect will only run once, during the first render
@@ -15,6 +15,6 @@ export default function Player({project}) {
         // the server HTML and also wont render during the first client-side render.
         return null;
     } else {
-        return <motion-canvas-player src={`/animations/${project}.js`}></motion-canvas-player>;
+        return <motion-canvas-player src={`/animations/${project}.js`} auto={auto}></motion-canvas-player>;
     }
 }

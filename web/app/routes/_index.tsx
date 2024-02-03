@@ -12,7 +12,7 @@ export default function Index() {
       <Default title="Hiya!">
         <Author />
         <p>
-          My name is Andrew Cairns and I am a Software Consultant and Content Creator living in Scotland.
+          I'm Andrew. Dad, husband, software consultant and a content creator too now, I guess! Living in Scotland.
         </p>
         <p>
           I've built software since Turbo Pascal on an Amstrad - an old language no
