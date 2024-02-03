@@ -23,5 +23,5 @@ I've written a wrapper for embedding an animation: `<Player />`;
 
 Just tell it what the project name was:
 ```
-<Player project='project' />
+<Player project='project123' />
 ```
