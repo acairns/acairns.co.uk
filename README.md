@@ -1,36 +1,27 @@
-# Welcome to Remix + Vite!
+# Website
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+Here's what happens.
 
-## Development
+Animations are in `./animations` and uses Motion Canvas.
+Website is in `./web` and uses Remix deployed to Cloudflare Pages.
 
-Run the Vite dev server:
+Both uses Vite.
 
-```shellscript
-npm run dev
+Animations, when built, get put in `./web/public/animations/` and
+are then available to be embedded.
+
+To update the animations, run:
+```
+$ rm -rf ./web/public/animations
+$ cd animations
+$ npm run build
 ```
 
-## Deployment
+This will output a bunch of stuff into that directory.
 
-First, build your app for production:
+I've written a wrapper for embedding an animation: `<Player />`;
 
-```sh
-npm run build
+Just tell it what the project name was:
 ```
-
-Then run the app in production mode:
-
-```sh
-npm start
+<Player project='project' />
 ```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
