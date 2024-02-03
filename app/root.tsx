@@ -22,13 +22,17 @@ export default function App() {
         <meta key="twitter:card" name="twitter:card" content="summary" />
         <meta key="twitter:site" name="twitter:site" content="@andrewcairns" />
         <meta key="twitter:creator" name="twitter:creator" content="@andrewcairns" />
+
+        <link rel="icon" type="image/png" href="favicon.png" />
+
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-slate-50">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <script type="module" src="/animations/main.js"></script>
       </body>
     </html>
   );

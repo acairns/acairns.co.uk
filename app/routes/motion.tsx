@@ -1,10 +1,9 @@
-import Author from "~/components/Author";
+import Player from "~/components/Player";
 
 export default function Index() {
   return (
     <div className="bg-red-400">
-      <h1>Welcome to Remix</h1>
-      <Author />
+        <Player project="project" />
     </div>
   );
 }

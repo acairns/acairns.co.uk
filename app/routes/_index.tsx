@@ -9,14 +9,13 @@ import Default from "~/components/layouts/Default";
 export default function Index() {
   return (
     <div>
-      <Default title="Howdy!">
+      <Default title="Hiya!">
         <Author />
         <p>
-          My name is Andrew Cairns and I'm a Software Content Creator and
-          Engineer living in Scotland.
+          My name is Andrew Cairns and I am a Software Consultant and Content Creator living in Scotland.
         </p>
         <p>
-          I've built software since Turbo Pascal on Amstrad - an old language no
+          I've built software since Turbo Pascal on an Amstrad - an old language no
           one remembers for an old computer no one used.
         </p>
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
