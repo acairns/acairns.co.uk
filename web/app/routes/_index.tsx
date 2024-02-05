@@ -1,5 +1,6 @@
 import { type MetaFunction } from "@remix-run/react";
 
+import Player from "~/components/Player";
 import Author from "~/components/Author";
 import Discord from "~/components/icons/discord";
 import Twitter from "~/components/icons/twitter";

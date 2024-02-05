@@ -6,11 +6,13 @@ export default defineConfig({
   plugins: [
     motionCanvas({
       project: [
-          "./src/project.ts"
+        "./src/me.ts",
+        "./src/project.ts",
       ]
     }),
     ffmpeg(),
   ],
+  base: '/animations/',
   build: {
     rollupOptions: {
       input: {
