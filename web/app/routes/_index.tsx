@@ -26,6 +26,7 @@ export default function Index() {
               className="bg-red-600 text-white rotate-2"
           >
             <YouTube className="mx-0.5 mb-1 w-6 h-6 inline fill-white" />
+            YouTube
           </a>{" "}
           channel while also doing some consulting.
         </p>
