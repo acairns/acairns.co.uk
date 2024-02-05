@@ -19,16 +19,15 @@ export default function Index() {
           one remembers for an old computer no one used.
         </p>
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
-          I'm mostly creating content for my{" "}
+          I'm creating content for my{" "}
           <a
               href="https://www.youtube.com/@metaphoricallyspeaking"
               target="_blank"
               className="bg-red-600 text-white rotate-2"
           >
-            <YouTube className="mx-0.5 mr-1.5 mb-1 w-6 h-6 inline fill-white" />
-            YouTube
+            <YouTube className="mx-0.5 mb-1 w-6 h-6 inline fill-white" />
           </a>{" "}
-          channel while also doing some consultanting.
+          channel while also doing some consulting.
         </p>
 
         {/* <a
@@ -41,7 +40,7 @@ export default function Index() {
 
         <p className="prose-a:no-underline hover:prose-a:underline prose-a:px-2 prose-a:inline-block prose-a:rounded hover:prose-a:shadow-md">
           Previously, I've held roles such as Staff Engineer and VP of
-          Engineering. Worked at places like{" "}
+          Engineering. Worked at {" "}
           <a
               href="https://transfergo.com"
               target="_blank"
