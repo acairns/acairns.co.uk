@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     motionCanvas({
       project: [
+        "./src/003-composition-over-inheritance/003-baseclass.ts",
         "./src/003-composition-over-inheritance/003-multi-mario.ts",
         "./src/003-composition-over-inheritance/003-split.ts",
         "./src/003-composition-over-inheritance/003-mario.ts",

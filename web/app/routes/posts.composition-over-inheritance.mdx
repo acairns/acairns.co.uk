@@ -105,9 +105,7 @@ export const headers = frontmatter.headers;
 
     Would we still have a mess? _Yes!_
 
-    <div className=''>
-        <Player project='003-split' auto />
-    </div>
+    <Player project='003-split' auto />
 
     It's for this reason I don't believe Composition to be a good driving factor for code reuse.
 
@@ -128,6 +126,8 @@ export const headers = frontmatter.headers;
     Imagine a ghost base class with four other ghost subclasses.
 
     If we were to introduce a change to the ghost base class - all subclasses would be impacted.
+
+    <Player project='003-baseclass' auto />
 
     Composition however provides us with object containment which will reduce the impact of the change.
 
@@ -151,6 +151,15 @@ export const headers = frontmatter.headers;
 
     Composition and Inheritance are just tools.
 
-    Instead, I love this take from Mathias Verraes on defining heuristics on when and when not to use Inheritance.
+    Instead, I love this take from Mathias Verraes on defining heuristics on when and when not to use Inheritance:
+
+    <blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">(Here&#39;s one heuristic: use inheritance when such inheritance exists in the domain and has a purpose there)</p>&mdash; Mathias Verraes (@mathiasverraes) <a href="https://twitter.com/mathiasverraes/status/1153630516756852738?ref_src=twsrc%5Etfw">July 23, 2019</a></blockquote>
+
 
 </Post>
+
+
+
+
+
+<script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
