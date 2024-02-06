@@ -7,17 +7,17 @@ headers:
   Cache-Control: no-cache
 ---
 
-import Default from "../components/layouts/Default.jsx";
-import Player from "../components/Player.jsx";
+import Post from "../components/layouts/Post";
+import Player from "../components/Player";
 
 export const meta = frontmatter.meta;
 export const headers = frontmatter.headers;
 
-<Default title={frontmatter.meta[0].title}>
-
-    <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/HNzP1aLAffM?si=Sk8V7Xnw0FeoIlv8" title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+<Post title={frontmatter.meta[0].title}>
 
     A lot can be learned about software development by playing retro games.
+
+    <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/HNzP1aLAffM?si=Sk8V7Xnw0FeoIlv8" title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 
     Tetris, for example, was a popular puzzle game back in the '80s. If you don't know what Tetris is (maybe you weren't born yet?!) let me quickly catch you up!
 
@@ -74,9 +74,11 @@ export const headers = frontmatter.headers;
     As we mentioned when explaining Composition,
     Inheritance creates an _"is a"_ relationship.
 
+    <Player project='003-multi-mario' auto />
+
     <div className='flex flex-row'>
-        <div className='grow'>Super Mario _is a_ Mario.</div>
-        <div className='grow text-right'>Fire Mario _is a_ Mario.</div>
+        <div className='grow text-center w-full'>Super Mario<br />_is a_<br />Mario</div>
+        <div className='grow text-center w-full'>Fire Mario<br />_is a_<br />Mario</div>
     </div>
 
     And so on.
@@ -151,4 +153,4 @@ export const headers = frontmatter.headers;
 
     Instead, I love this take from Mathias Verraes on defining heuristics on when and when not to use Inheritance.
 
-</Default>
+</Post>
