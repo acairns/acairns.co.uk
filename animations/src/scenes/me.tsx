@@ -24,12 +24,12 @@ export default makeScene2D(function* (view) {
         hand().rotation(-10, 0.2),
         hand().rotation(5, 0.3),
         hand().rotation(-10, 0.2),
-        hand().rotation(5, 0.4),
+        hand().rotation(5, 0.3),
         hand().rotation(-10, 0.2),
-        waitFor(0.4),
+        hand().rotation(10, 0.5),
         all(
             hand().scale(0.4, 0.4),
-            hand().rotation(10, 0.4),
+            hand().rotation(-20, 0.4),
             hand().opacity(0, 0.4),
         )
     );
