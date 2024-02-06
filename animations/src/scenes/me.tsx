@@ -18,7 +18,7 @@ export default makeScene2D(function* (view) {
 
     yield hand().opacity(1, 0.4);
 
-    yield chain(
+    yield* chain(
         hand().rotation(-10, 0.2),
         hand().rotation(5, 0.3),
         hand().rotation(-10, 0.2),
@@ -29,16 +29,12 @@ export default makeScene2D(function* (view) {
         all(
             hand().scale(0.4, 0.4),
             hand().opacity(0, 0.4),
-        )
+        ),
     );
 
-    yield* loop(10, function* (i){
-        yield* waitFor(1);
+    yield* wink(image);
 
-        if (Math.random() < 0.7) {
-            yield* blink(image);
-        }
-
+    yield* loop(20, function* (i){
         yield* waitFor(2);
 
         // 50/50 chance of adding an extra pause
@@ -46,8 +42,30 @@ export default makeScene2D(function* (view) {
             yield* waitFor(1);
         }
 
-        if (Math.random() < 0.3) {
-            yield* wink(image);
+        yield* blink(image);
+
+        // 20% chance of a double-blink
+        if (Math.random() < 0.2) {
+            yield* waitFor(0.2);
+            yield* blink(image);
+        }
+
+        // 10% chance of a head tilt
+        if (Math.random() < 0.1) {
+            yield sequence(3,
+                all(
+                    image().rotation(-5, 0.2),
+                    image().x(-5, 0.2)
+                ),
+                all(
+                    image().rotation(0, 0.2),
+                    image().x(0, 0.2)
+                )
+            );
+        }
+
+        // 50/50 chance of adding an extra pause
+        if (Math.random() < 0.5) {
             yield* waitFor(1);
         }
     });
@@ -59,13 +77,13 @@ function* wink(image: Reference<Img>) {
         1,
         all(
             image().src(me2, 0),
-            image().rotation(3, 0),
-            image().x(3, 0)
+            image().rotation(3, 0.2),
+            image().x(3, 0.2)
         ),
         all(
             image().src(me1, 0),
-            image().rotation(0, 0),
-            image().x(0, 0)
+            image().rotation(0, 0.2),
+            image().x(0, 0.2)
         )
     );
 }
