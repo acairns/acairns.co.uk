@@ -127,7 +127,16 @@ export const headers = frontmatter.headers;
 
     If we were to introduce a change to the ghost base class - all subclasses would be impacted.
 
-    <Player project='003-baseclass' auto />
+    <div style={{
+        backgroundImage: "url('/003/nintendo-switch.png')",
+        backgroundSize: 'contain',
+        margin: '0 -120px',
+        padding: '120px 120px',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center'
+    }}>
+        <Player project='003-baseclass' auto />
+    </div>
 
     Composition however provides us with object containment which will reduce the impact of the change.
 

@@ -18,9 +18,6 @@ export default makeScene2D(function* (view) {
 
     view.add(
         <>
-            <Rect width={592} height={280} stroke="#2113B0" radius={15} fill='black' smoothCorners />
-            <Rect lineWidth={2} width={550} height={230} stroke="#2113B0" radius={10} smoothCorners />
-            <Rect lineWidth={2} width={535} height={215} stroke="#2113B0" radius={5} smoothCorners />
         <Rect scale={0.5} y={-25}>
             <Rect ref={container}>
                 <Line
