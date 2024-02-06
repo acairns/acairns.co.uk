@@ -1,3 +1,6 @@
+import mdx from "@mdx-js/rollup";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import {
   unstable_vitePlugin as remix,
   unstable_cloudflarePreset as cloudflare,
@@ -9,6 +12,12 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
+    mdx({
+      remarkPlugins: [
+        remarkFrontmatter,
+        remarkMdxFrontmatter,
+      ]
+    }),
     remix({
       presets: [cloudflare()],
     }),

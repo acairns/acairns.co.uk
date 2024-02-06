@@ -15,6 +15,6 @@ export default function Player({project, auto = null}) {
         // the server HTML and also wont render during the first client-side render.
         return null;
     } else {
-        return <motion-canvas-player src={`/animations/${project}.js`} auto={auto} variables='{"loop": false}'></motion-canvas-player>;
+        return <motion-canvas-player src={`/animations/${project}.js`} auto={auto}></motion-canvas-player>;
     }
 }

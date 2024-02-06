@@ -8,7 +8,6 @@ import Default from "~/components/layouts/Default";
 
 export default function Index() {
   return (
-    <div>
       <Default title="Hiya!">
         <Author />
         <p>
@@ -75,7 +74,6 @@ export default function Index() {
         </p>
 
       </Default>
-    </div>
   );
 }
 
