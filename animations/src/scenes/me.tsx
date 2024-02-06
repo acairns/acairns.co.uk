@@ -1,13 +1,37 @@
 import { makeScene2D, Circle, SVG, Img } from "@motion-canvas/2d";
-import { createRef, all, loop, waitFor, sequence, Reference } from "@motion-canvas/core";
+import {createRef, all, loop, waitFor, sequence, Reference, chain} from "@motion-canvas/core";
 import me1 from "/me1.png";
 import me2 from "/me2.png";
 import me3 from "/me3.png";
+import srcHand from '/me/hand.svg';
 
 export default makeScene2D(function* (view) {
     const image = createRef<Img>();
+    const hand = createRef<Img>();
+
     view.add(
-        <Img ref={image} src={me1} width="100%" />
+        <>
+            <Img ref={image} src={me1} width="100%" />
+            <Img ref={hand} src={srcHand} scale={0.5} x={-60} y={85} offset={[0, 1]} opacity={0} />
+        </>
+    );
+
+    yield hand().opacity(1, 0.4);
+
+    yield chain(
+        hand().rotation(-10, 0.2),
+        hand().rotation(5, 0.3),
+        hand().rotation(-10, 0.2),
+        hand().rotation(5, 0.3),
+        hand().rotation(-10, 0.2),
+        hand().rotation(5, 0.4),
+        hand().rotation(-10, 0.2),
+        waitFor(0.4),
+        all(
+            hand().scale(0.4, 0.4),
+            hand().rotation(10, 0.4),
+            hand().opacity(0, 0.4),
+        )
     );
 
     yield* loop(10, function* (i){
