@@ -32,7 +32,6 @@ export default function App() {
         <div className="overflow-x-hidden">
           <Outlet />
         </div>
-        <ScrollRestoration />
         <Scripts />
         <script type="module" src="/animations/main.js"></script>
 
