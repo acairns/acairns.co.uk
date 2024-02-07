@@ -25,3 +25,9 @@ Just tell it what the project name was:
 ```
 <Player project='project123' />
 ```
+
+When testing locally on mobile, make sure ngrok is setup...
+```
+ngrok http --domain=fluent-tiger-content.ngrok-free.app 5173
+```
+Now, view this and should be able to test a bit on mobile.

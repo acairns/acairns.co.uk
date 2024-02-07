@@ -28,32 +28,14 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-slate-50 overflow-x-hidden">
-        <Outlet />
+      <body className="bg-slate-50">
+        <div className="overflow-x-hidden">
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <script type="module" src="/animations/main.js"></script>
 
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-        // quick hacky script to play/pause as video enters/leaves viewport
-        // https://stackoverflow.com/a/58914563
-        let video = document.querySelector('video');
-          let isPaused = false;
-          let observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if(entry.intersectionRatio!=1  && !video.paused){
-              video.pause();
-              isPaused = true;
-            }
-            else if(isPaused) {
-              video.play();
-              isPaused=false}
-          });
-        }, {threshold: 1});
-          observer.observe(video);`
-      }} />
       </body>
     </html>
   );
