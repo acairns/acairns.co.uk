@@ -7,6 +7,7 @@ headers:
   Cache-Control: no-cache
 ---
 
+import SubHeading from "../components/SubHeading.jsx";
 import Post from "../components/layouts/Post";
 import Player from "../components/Player";
 
@@ -41,7 +42,7 @@ export const headers = frontmatter.headers;
         <Player project='003-smashboy' auto />
     </div>
 
-    ## Composition
+    <SubHeading title='Composition' />
 
     Composing objects together which have themselves been composed of other objects is a powerful way to build complex systems with a high degree of flexibility and modularity.
 
@@ -51,11 +52,9 @@ export const headers = frontmatter.headers;
 
     When we want to compose other objects together, just like shapes and Tetris, to achieve the functionality we want: this is Composition.
 
-
-
     <div className="flex items-center !-mt-4 !-mb-8">
         <div className='grow'>
-            ## Inheritance
+            <SubHeading title='Inheritance' />
         </div>
         <div className='grow scale-75 md:scale-100'>
             <Player project='003-mario' auto />
@@ -94,7 +93,7 @@ export const headers = frontmatter.headers;
 
     The main arguments for choosing Composition over Inheritance primarily revolve around maintainability and flexibility.
 
-    ## Separation is not organisation
+    <SubHeading title='Separation is not organisation' />
 
     A reason often stated why we should prefer Composition over Inheritance is the ability to promote code reuse. However, I don't believe Composition should be the reason we separate code.
 
@@ -124,7 +123,7 @@ export const headers = frontmatter.headers;
 
     Well, it happens often enough to be called: _The Fragile Base Class Problem._
 
-    ## The Fragile Base Class Problem
+    <SubHeading title='The Fragile Base Class Problem' />
 
     Let's explore this using the ghosts from Pacman.
 
