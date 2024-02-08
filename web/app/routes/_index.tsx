@@ -1,4 +1,4 @@
-import { type MetaFunction } from "@remix-run/react";
+import {Link, type MetaFunction} from "@remix-run/react";
 
 import Author from "~/components/Author";
 import Discord from "~/components/icons/discord";
@@ -72,6 +72,16 @@ export default function Index() {
             <Twitter className="mx-0.5 mb-1 w-5 h-5 inline" />
           </a>
         </p>
+
+        <hr />
+
+          <h2>Recent posts</h2>
+
+          <ul>
+              <li>
+                  <Link to='/posts/composition-over-inheritance'>Composition over Inheritance</Link>
+              </li>
+          </ul>
 
       </Default>
   );
