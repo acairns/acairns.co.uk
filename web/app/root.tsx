@@ -6,9 +6,29 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import * as Fathom from "fathom-client";
+import { useLocation } from "react-router-dom";
+
 import "./tailwind.css";
+import {useEffect, useRef} from "react";
 
 export default function App() {
+
+  const fathomLoaded = useRef(false);
+  const location = useLocation();
+
+  useEffect(
+      function setupFathom() {
+        if (!fathomLoaded.current) {
+          Fathom.load("QPZGXLRS", { includedDomains: ["<YOUR_DOMAIN>"] });
+          fathomLoaded.current = true;
+        } else {
+          Fathom.trackPageview();
+        }
+      },
+      [location]
+  );
+
   return (
     <html lang="en">
       <head>
@@ -23,14 +43,7 @@ export default function App() {
         <meta key="twitter:site" name="twitter:site" content="@andrewcairns" />
         <meta key="twitter:creator" name="twitter:creator" content="@andrewcairns" />
 
-        <link rel="icon" type="image/png" href="favicon.png" />
-
-        {
-          process.env.NODE_ENV === 'production'
-              ? <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" defer />
-              : null
-        }
-
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <Meta />
         <Links />
       </head>
