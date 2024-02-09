@@ -20,7 +20,10 @@ export default function App() {
   useEffect(
       function setupFathom() {
         if (!fathomLoaded.current) {
-          Fathom.load("QPZGXLRS", { includedDomains: ["<YOUR_DOMAIN>"] });
+          Fathom.load("QPZGXLRS", {
+              auto: false,
+              spa: 'auto'
+          });
           fathomLoaded.current = true;
         } else {
           Fathom.trackPageview();
