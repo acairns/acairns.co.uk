@@ -38,7 +38,7 @@ export default function App() {
         <script type="module" src="/animations/main.js"></script>
         {
           process.env.NODE_ENV === 'production'
-              ? <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" defer />
+              ? <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" data-spa="auto" defer />
               : null
         }
       </body>
