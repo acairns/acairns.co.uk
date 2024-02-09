@@ -9,7 +9,6 @@ import {
 import "./tailwind.css";
 
 export default function App() {
-  console.log(process.env.NODE_ENV);
   return (
     <html lang="en">
       <head>
@@ -26,6 +25,12 @@ export default function App() {
 
         <link rel="icon" type="image/png" href="favicon.png" />
 
+        {
+          process.env.NODE_ENV === 'production'
+              ? <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" data-spa="auto" defer />
+              : null
+        }
+
         <Meta />
         <Links />
       </head>
@@ -36,11 +41,6 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <script type="module" src="/animations/main.js"></script>
-        {
-          process.env.NODE_ENV === 'production'
-              ? <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" data-spa="auto" defer />
-              : null
-        }
       </body>
     </html>
   );
