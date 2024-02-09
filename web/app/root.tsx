@@ -6,32 +6,11 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import * as Fathom from "fathom-client";
-import { useLocation } from "react-router-dom";
+import Fathom from "~/components/website/Fathom";
 
 import "./tailwind.css";
-import {useEffect, useRef} from "react";
 
 export default function App() {
-
-  const fathomLoaded = useRef(false);
-  const location = useLocation();
-
-  useEffect(
-      function setupFathom() {
-        if (!fathomLoaded.current) {
-          Fathom.load("QPZGXLRS", {
-              auto: false,
-              spa: 'auto'
-          });
-          fathomLoaded.current = true;
-        } else {
-          Fathom.trackPageview();
-        }
-      },
-      [location]
-  );
-
   return (
     <html lang="en">
       <head>
@@ -51,6 +30,7 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-slate-50">
+        <Fathom />
         <div className="overflow-x-hidden">
           <Outlet />
         </div>
