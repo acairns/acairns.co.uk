@@ -1,4 +1,3 @@
-import { useLocation } from '@remix-run/react'
 import { load } from 'fathom-client'
 import { useEffect } from 'react'
 
