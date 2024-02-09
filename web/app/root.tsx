@@ -35,7 +35,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <script type="module" src="/animations/main.js"></script>
-
+        <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" defer />
       </body>
     </html>
   );
