@@ -36,7 +36,7 @@ export default function App() {
         </div>
         <ScrollRestoration />
         <Scripts />
-        <script type="module" src="/animations/main.js"></script>
+        <script type="module" src="/animations/main.js" defer></script>
       </body>
     </html>
   );
