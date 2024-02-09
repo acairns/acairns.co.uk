@@ -9,6 +9,7 @@ import {
 import "./tailwind.css";
 
 export default function App() {
+  console.log(process.env.NODE_ENV);
   return (
     <html lang="en">
       <head>
@@ -35,7 +36,11 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <script type="module" src="/animations/main.js"></script>
-        <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" defer />
+        {
+          process.env.NODE_ENV === 'production'
+              ? <script src="https://cdn.usefathom.com/script.js" data-site="QPZGXLRS" defer />
+              : null
+        }
       </body>
     </html>
   );
