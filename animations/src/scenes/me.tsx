@@ -34,7 +34,12 @@ export default makeScene2D(function* (view) {
 
     yield* wink(image);
 
+    console.log(
+        'HEY', this.inspectPosition(0, 0)
+    );
+
     yield* loop(20, function* (i){
+
         yield* waitFor(2);
 
         // 50/50 chance of adding an extra pause
