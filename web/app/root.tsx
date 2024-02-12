@@ -15,7 +15,7 @@ export default function App() {
     <html lang="en">
       <head>
         <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
-        <meta charSet="utf-8" />
+        <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta key="og:site_name" property="og:site_name" content="Andrew Cairns" />
