@@ -20,7 +20,7 @@ export default function App() {
         <meta key="og:site_name" property="og:site_name" content="Andrew Cairns" />
         <meta key="og:type" property="og:type" content="website" />
 
-        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
         <meta key="twitter:site" name="twitter:site" content="@andrewcairns" />
         <meta key="twitter:creator" name="twitter:creator" content="@andrewcairns" />
 
