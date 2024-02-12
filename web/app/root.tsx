@@ -6,8 +6,6 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import type { HeadersFunction } from "@remix-run/cloudflare";
-
 import Fathom from "~/components/website/Fathom";
 
 import "./tailwind.css";
@@ -43,12 +41,3 @@ export default function App() {
     </html>
   );
 }
-
-export const headers: HeadersFunction = ({
- actionHeaders,
- errorHeaders,
- loaderHeaders,
- parentHeaders,
-}) => ({
-  "Content-Type": "text/html",
-});
