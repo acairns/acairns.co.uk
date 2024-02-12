@@ -14,6 +14,7 @@ export default function App() {
   return (
     <html lang="en">
       <head>
+        <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
