@@ -102,5 +102,9 @@ export const meta: MetaFunction = () => {
       name: "og:description",
       content: "My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development.",
     },
+    {
+      name: "og:image",
+      content: "/andrewcairns_400x400.jpeg"
+    }
   ];
 };

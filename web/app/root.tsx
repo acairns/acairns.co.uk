@@ -19,7 +19,6 @@ export default function App() {
 
         <meta key="og:site_name" property="og:site_name" content="Andrew Cairns" />
         <meta key="og:type" property="og:type" content="website" />
-        <meta key="og:image" property="og:image" content="https://acairns.co.uk/andrewcairns_400x400.jpeg" />
 
         <meta key="twitter:card" name="twitter:card" content="summary" />
         <meta key="twitter:site" name="twitter:site" content="@andrewcairns" />
