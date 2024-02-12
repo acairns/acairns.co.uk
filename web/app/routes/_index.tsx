@@ -104,7 +104,7 @@ export const meta: MetaFunction = () => {
     },
     {
       name: "og:image",
-      content: "/andrewcairns_400x400.jpeg"
+      content: "https://acairns.co.uk/andrewcairns_400x400.jpeg"
     }
   ];
 };
