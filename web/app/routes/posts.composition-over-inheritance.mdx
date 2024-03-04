@@ -1,0 +1,199 @@
+---
+meta:
+  - title: Composition over Inheritance
+  - name: description
+    content: A lot can be learned about software development by playing retro games.
+  - property: 'og:image'
+    name: 'og:image'
+    content: 'https://acairns.co.uk/003/og-image.png'
+  - name: 'twitter:image:src'
+    property: 'twitter:image:src'
+    content: 'https://acairns.co.uk/003/og-image.png'
+  - name: 'twitter:image'
+    property: 'twitter:image'
+    content: 'https://acairns.co.uk/003/og-image.png'
+  - name: 'twitter:title'
+    property: 'twitter:title'
+    content: Composition over Inheritance
+  - name: 'twitter:description'
+    property: 'twitter:description'
+    content: A lot can be learned about software development by playing retro games.
+  - name: 'og:url'
+    property: 'og:url'
+    content: 'https://acairns.co.uk/posts/composition-over-inheritance'
+  - name: 'og:title'
+    property: 'og:title'
+    content: Composition over Inheritance
+  - name: 'og:description'
+    property: 'og:description'
+    content: A lot can be learned about software development by playing retro games.
+  - name: 'twitter:card'
+    property: 'twitter:card'
+    content: 'summary_large_image'
+headers:
+  Cache-Control: no-cache
+---
+
+import SubHeading from "../components/SubHeading.jsx";
+import Post from "../components/layouts/Post";
+import Player from "../components/Player";
+
+export const meta = frontmatter.meta;
+export const headers = frontmatter.headers;
+
+<Post title={frontmatter.meta[0].title}>
+
+    A lot can be learned about software development by playing retro games.
+
+    <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/HNzP1aLAffM?si=Sk8V7Xnw0FeoIlv8" title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+
+    Tetris, for example, was a popular puzzle game back in the '80s. If you don't know what Tetris is (maybe you weren't born yet?!) let me quickly catch you up!
+
+    The whole point of the game is to complete as many lines as possible using a series of blocks that dropped from the top of the game board. Completing lines will clear the blocks from the board making space allowing you to play longer - and obtain a higher score.
+
+    It sounds easy, but let me tell you... it can get pretty intense when the board starts filling up with blocks and all you're trying to do is not freak out!
+
+    <div className='flex justify-center !-my-8'>
+        <Player project='003-tetris' auto />
+    </div>
+
+    Now you may be thinking: _"What can Tetris teach us about software development?"_
+
+    In Tetris the whole goal of the game is to compose shapes together. You could say, the goal of the game is to create a new shape: a _Complete Line_, using existing shapes .
+
+    Likewise, in programming, we are often creating something new by utilising existing components. In both cases we combine existing components to create what we need.
+
+    This principle is called: Composition.
+
+    <div className='float-right !-my-4 h-[150px] w-[150px]'>
+        <Player project='003-smashboy' auto />
+    </div>
+
+    <SubHeading title='Composition' />
+
+    Composing objects together (which may be composed of other objects themselves) is a powerful way to build complex systems with a high degree of flexibility and modularity.
+
+    If we were to pretend our `CompleteLine` was an object, we could say: _"our completed line **has** four shapes"_.
+
+    Composition creates a _"has a"_ relationship while inheritance is useful for modelling an _"is a"_ relationship.
+
+    When we want to compose other objects together, just like shapes and Tetris, to achieve the functionality we want: this is Composition.
+
+    <div className="flex items-center !-mt-4 !-mb-8">
+        <div className='grow'>
+            <SubHeading title='Inheritance' />
+        </div>
+        <div className='grow scale-75 md:scale-100'>
+            <Player project='003-mario' auto />
+        </div>
+    </div>
+
+    What can we learn about Inheritance from retro games?
+
+    Let's think about... Mario!
+
+    In most Mario games, when  Mario obtains a Power Up (such as a <img src="/003/fire-flower.png" className='inline size-8 align-text-bottom !m-0' /> Fire Flower or a <img src="/003/super-mushroom.png" className='inline size-8 align-text-bottom !m-0' /> Super Mushroom) he gains a specific ability or enhancement.
+
+    However, he can only have one power up at a time.
+
+    This limitation of a single Power Up mirrors the restrictions of Single Inheritance.
+
+    In some programming languages a class can only inherit from one superclass at a time.
+
+    This creates a hierarchy where subclasses inherit the properties and behaviours of only a single parent class.
+
+    As we mentioned when explaining Composition.
+
+    Inheritance creates an _"is a"_ relationship.
+
+    <Player project='003-multi-mario' auto />
+
+    <div className='flex flex-row'>
+        <div className='grow text-center w-full'>Super Mario<br />_is a_<br />Mario</div>
+        <div className='grow text-center w-full'>Fire Mario<br />_is a_<br />Mario</div>
+    </div>
+
+    And so on.
+
+    Inheritance is when we design our types around what they are - and can be an intuitive way to model a simple system.
+
+    So, how come people often say we should: _"Favour Composition over Inheritance?"_
+
+    The main arguments for choosing Composition over Inheritance primarily revolve around the maintainability and flexibility of a system once it starts to grow.
+
+    <SubHeading title='Separation is not Organisation' />
+
+    A reason often stated why we should prefer Composition over Inheritance is the ability to promote code reuse. However, I don't believe Composition should be the reason we separate code.
+
+    Scott Yu-Jan describes this perfectly in the intro to one of his videos:
+
+    <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/-s74phtezf4?end=54" title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+
+    > They just kinda divide up your stuff into smaller units of mess.
+
+    If we considered composition as being the driving factor for creating smaller units of code, we would end up with the programming equivalent of a _drawer organiser_.
+
+    Would we have smaller units of code? _Yes._
+
+    Would we still have a mess? _Yes!_
+
+    <Player project='003-split' auto />
+
+    It's for this reason I don't believe Composition to be a good driving factor for code reuse.
+
+    Instead I believe it's following the Single Responsibility Principle that helps us build smaller units that can later be composed together. Smaller units of code that adhere to the Single Responsibility Principle are easier to maintain and easier to update. They are more flexible because they were designed to do one thing and do that one thing well!
+
+    Composition's role is to help us take advantage of these existing smaller units of code - not define them! It's what allows us to build more complex functionality in ways inheritance can't.
+
+    Inheritance is also one of the strongest possible types of coupling. Changes to a base class can inadvertently affect the functionality of its child classes.
+
+    How often does this happen?
+
+    Well, it happens often enough to be called: _The Fragile Base Class Problem._
+
+    <SubHeading title='The Fragile Base Class Problem' />
+
+    Let's explore what this means by using the ghosts from Pacman.
+
+    Imagine a ghost base class with four other ghost subclasses. If we were to introduce a change to the ghost base class - all subclasses would be impacted.
+
+    <div style={{
+        backgroundImage: "url('/003/nintendo-switch.png')",
+        backgroundSize: 'contain',
+        margin: '0 -230px',
+        padding: '40px 230px',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center'
+    }}>
+        <Player project='003-baseclass' auto />
+    </div>
+
+    Composition however would provide us with _Object Containment_ - reducing the impact of changes.
+
+    Instead of using Inheritance to reuse code, we can use _Dependency Injection_ and utilise Composition instead. We also spoke about _Single Responsibility_ earlier, too.
+
+    That's two of the five SOLID principles.
+
+    I'll be covering the SOLID principles in more depth in future content, but for now - seems like it's game over for inheritance, right?
+
+    Well...
+
+    Would I advise you to favour Composition over Inheritance?
+
+    Yeah, I would - because of all the reasons mentioned above. But not _all_ inheritance is bad and we should not blindly avoid it. Composition and Inheritance are just tools.
+
+    Instead, I love this perspective from Mathias Verraes on defining heuristics on when, and when not, to use Inheritance:
+
+    <div className='flex justify-center'>
+        <blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Inheritance is often the poster child for bad OOP. You can make almost any inheritance better by replacing it with composition. We know that. But we can improve the discussion by talking about heuristics for when and when not to use inheritance, instead of fully dismissing it. (Here&#39;s one heuristic: use inheritance when such inheritance exists in the domain and has a purpose there)</p>&mdash; Mathias Verraes (@mathiasverraes) <a href="https://twitter.com/mathiasverraes/status/1153630516756852738?ref_src=twsrc%5Etfw">July 23, 2019</a></blockquote>
+    </div>
+
+</Post>
+
+
+
+
+
+<script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
+
+

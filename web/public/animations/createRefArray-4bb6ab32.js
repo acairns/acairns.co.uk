@@ -1,0 +1,1 @@
+function c(){const r=function(){};return r.array=[],new Proxy(r,a)}const a={apply(r,n,e){if(e.length===0)return r.array[0];r.array.push(...e)},get(r,n,e){const t=Reflect.get(r.array,n,e);return typeof t=="function"?t.bind(r.array):t},set(r,n,e,t){return Reflect.set(r.array,n,e,t)}};export{c};
