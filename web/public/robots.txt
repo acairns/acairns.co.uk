@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /animations/*
+Sitemap https://acairns.co.uk/sitemap.xml
