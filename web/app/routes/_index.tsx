@@ -89,18 +89,18 @@ export default function Index() {
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Andrew Cairns" },
+    { title: "Andrew Cairns | Software Engineering Content Creator | Metaphorically Speaking" },
     {
       property: "og:title",
       content: "Andrew Cairns",
     },
     {
       name: "description",
-      content: "My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development.",
+      content: "Software Engineer and Content Creator sharing ideas about Domain-Driven Design, CQRS and other patterns using fun metaphors and analogies.",
     },
     {
       name: "og:description",
-      content: "My name is Andrew Cairns and I'm a Software Engineer living in Scotland. This is where I share my thoughts regarding software development.",
+      content: "Software Engineer and Content Creator sharing ideas about Domain-Driven Design, CQRS and other patterns using fun metaphors and analogies.",
     },
       {
           name: "og:image",
