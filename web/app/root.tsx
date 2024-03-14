@@ -17,7 +17,7 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <meta key="og:site_name" property="og:site_name" content="Andrew Cairns" />
+        <meta key="og:site_name" property="og:site_name" content="Andrew Cairns | Software Engineering Content Creator" />
         <meta key="og:type" property="og:type" content="website" />
 
         <meta key="twitter:card" name="twitter:card" content="summary" />
