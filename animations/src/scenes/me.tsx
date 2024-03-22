@@ -1,8 +1,8 @@
 import { makeScene2D, Circle, SVG, Img } from "@motion-canvas/2d";
 import {createRef, all, loop, waitFor, sequence, Reference, chain} from "@motion-canvas/core";
-import me1 from "/me1.png";
-import me2 from "/me2.png";
-import me3 from "/me3.png";
+import me1 from "/me/me1.png";
+import me2 from "/me/me2.png";
+import me3 from "/me/me3.png";
 import srcHand from '/me/hand.svg';
 
 export default makeScene2D(function* (view) {
@@ -81,7 +81,7 @@ function* wink(image: Reference<Img>) {
     yield* sequence(
         1,
         all(
-            image().src(me2, 0),
+            image().src(me3, 0),
             image().rotation(3, 0.2),
             image().x(3, 0.2)
         ),
@@ -95,8 +95,8 @@ function* wink(image: Reference<Img>) {
 
 function* blink(image: Reference<Img>) {
     yield* sequence(
-        0.1,
-        image().src(me3, 0),
+        0.3,
+        image().src(me2, 0),
         image().src(me1, 0),
     );
 }
